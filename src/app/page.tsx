@@ -16,6 +16,7 @@ const tests = [
     tagline: "Stick it. Wait. Mail it. Done.",
     quote: '"I want answers, not a craft project."',
     image: "/images/patchonfilter.jpeg",
+    shopUrl: "https://testyourworld.myshopify.com/products/airpatch-kit-whole-home-air-quality-test",
     features: [
       '4"×4" patch works anywhere air moves',
       "Test whole home via HVAC filter",
@@ -33,6 +34,7 @@ const tests = [
     tagline: "For the hands-on homeowner.",
     quote: '"That dusty filter is about to become useful."',
     image: "/images/filtercut.png",
+    shopUrl: "https://testyourworld.myshopify.com/products/direct-filter-test-no-kit-needed-20-off",
     features: [
       "Uses your existing used filter (30+ days old)",
       "Heavy-duty filter shears included (cuts wire mesh)",
@@ -49,6 +51,7 @@ const tests = [
     tagline: "Swab it. Send it. Stop guessing.",
     quote: '"Is that mold or a committed dust bunny?"',
     image: "/images/rs=h_175,m (1).webp",
+    shopUrl: "https://testyourworld.myshopify.com/products/surface-swab-mold-test-report",
     features: [
       "Swab any suspicious surface",
       "Walls, ceilings, basements, bathrooms",
@@ -225,7 +228,7 @@ export default function HomePage() {
                   <p className="text-cyan font-semibold text-sm mb-3">{test.tagline}</p>
                   <p className="text-gray-500 text-sm italic mb-5">{test.quote}</p>
                   <div className="border-t border-white/5 pt-5 mt-auto">
-                    <ul className="space-y-2.5">
+                    <ul className="space-y-2.5 mb-6">
                       {test.features.map((f, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
                           <svg className="w-4 h-4 text-cyan mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
@@ -233,6 +236,14 @@ export default function HomePage() {
                         </li>
                       ))}
                     </ul>
+                    <a
+                      href={test.shopUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block bg-cyan text-navy text-center py-3 rounded-lg font-outfit font-bold hover:bg-cyan-dim transition-all hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(0,229,255,0.3)]"
+                    >
+                      Get {test.name} — $69
+                    </a>
                   </div>
                 </div>
               </div>
