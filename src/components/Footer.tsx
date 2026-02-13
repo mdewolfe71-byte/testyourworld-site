@@ -1,17 +1,22 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export function Footer() {
   return (
-    <footer className="bg-[var(--navy)] text-gray-400 border-t border-white/5">
+    <footer className="bg-navy text-gray-400 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-9 h-9 rounded-full border-2 border-[var(--cyan)] flex items-center justify-center">
-                <span className="text-[var(--cyan)] font-bold text-sm font-[Outfit]">TYW</span>
-              </div>
-              <span className="text-white font-[Outfit] font-semibold text-lg">Test Your World</span>
+              <Image
+                src="/images/CDlogo.png"
+                alt="Test Your World"
+                width={36}
+                height={36}
+                className="rounded-full"
+              />
+              <span className="text-white font-outfit font-semibold text-lg">Test Your World</span>
             </div>
             <p className="text-sm leading-relaxed">
               Serious science. Delivered without the serious attitude.
@@ -28,7 +33,7 @@ export function Footer() {
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center hover:border-[var(--cyan)] hover:text-[var(--cyan)] transition-all"
+                  className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center hover:border-cyan hover:text-cyan transition-all"
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                     <path d={icon} />
@@ -40,31 +45,31 @@ export function Footer() {
 
           {/* Testing */}
           <div>
-            <h4 className="text-white font-[Outfit] font-semibold mb-4 text-sm tracking-wide uppercase">Testing</h4>
+            <h4 className="text-white font-outfit font-semibold mb-4 text-sm tracking-wide uppercase">Testing</h4>
             <ul className="space-y-3 text-sm">
-              <li><Link href="/test-your-air" className="hover:text-[var(--cyan)] transition-colors">Test Your Air</Link></li>
-              <li><Link href="/swab-testing" className="hover:text-[var(--cyan)] transition-colors">Swab Testing</Link></li>
-              <li><Link href="/sample-report" className="hover:text-[var(--cyan)] transition-colors">Sample Report</Link></li>
-              <li><a href="https://testyourworld.myshopify.com" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--cyan)] transition-colors">Shop</a></li>
+              <li><Link href="/test-your-air" className="hover:text-cyan transition-colors">Test Your Air</Link></li>
+              <li><Link href="/swab-testing" className="hover:text-cyan transition-colors">Swab Testing</Link></li>
+              <li><Link href="/sample-report" className="hover:text-cyan transition-colors">Sample Report</Link></li>
+              <li><a href="https://testyourworld.myshopify.com" target="_blank" rel="noopener noreferrer" className="hover:text-cyan transition-colors">Shop</a></li>
             </ul>
           </div>
 
           {/* Company */}
           <div>
-            <h4 className="text-white font-[Outfit] font-semibold mb-4 text-sm tracking-wide uppercase">Company</h4>
+            <h4 className="text-white font-outfit font-semibold mb-4 text-sm tracking-wide uppercase">Company</h4>
             <ul className="space-y-3 text-sm">
-              <li><Link href="/learn-more" className="hover:text-[var(--cyan)] transition-colors">Learn More</Link></li>
-              <li><Link href="/contact" className="hover:text-[var(--cyan)] transition-colors">Contact</Link></li>
-              <li><a href="https://testyourworld.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--cyan)] transition-colors">Client Portal</a></li>
+              <li><Link href="/learn-more" className="hover:text-cyan transition-colors">Learn More</Link></li>
+              <li><Link href="/contact" className="hover:text-cyan transition-colors">Contact</Link></li>
+              <li><a href="https://testyourworld.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-cyan transition-colors">Client Portal</a></li>
             </ul>
           </div>
 
           {/* Legal */}
           <div>
-            <h4 className="text-white font-[Outfit] font-semibold mb-4 text-sm tracking-wide uppercase">Legal</h4>
+            <h4 className="text-white font-outfit font-semibold mb-4 text-sm tracking-wide uppercase">Legal</h4>
             <ul className="space-y-3 text-sm">
-              <li><Link href="/privacy-policy" className="hover:text-[var(--cyan)] transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/terms-and-conditions" className="hover:text-[var(--cyan)] transition-colors">Terms &amp; Conditions</Link></li>
+              <li><Link href="/privacy-policy" className="hover:text-cyan transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/terms-and-conditions" className="hover:text-cyan transition-colors">Terms &amp; Conditions</Link></li>
             </ul>
           </div>
         </div>
@@ -72,7 +77,7 @@ export function Footer() {
         {/* Disclaimer */}
         <div className="border-t border-white/5 pt-8">
           <p className="text-xs text-gray-500 leading-relaxed max-w-4xl">
-            © 2026 BRS Lab Services. Test Your World™ is a consumer screening service, not a medical or diagnostic product. All rights reserved. Test Your World results are provided for informational purposes only. They are not intended to diagnose, treat, cure, or prevent any disease. Results should not replace professional medical or environmental advice. For health or safety concerns, consult a qualified healthcare provider or licensed environmental professional.
+            &copy; 2026 BRS Lab Services. Test Your World&trade; is a consumer screening service, not a medical or diagnostic product. All rights reserved. Test Your World results are provided for informational purposes only. They are not intended to diagnose, treat, cure, or prevent any disease. Results should not replace professional medical or environmental advice. For health or safety concerns, consult a qualified healthcare provider or licensed environmental professional.
           </p>
         </div>
       </div>

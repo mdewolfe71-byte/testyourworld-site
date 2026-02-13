@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 const navLinks = [
@@ -17,14 +18,18 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--navy)]/95 backdrop-blur-md border-b border-white/5">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-md border-b border-white/5">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-full border-2 border-[var(--cyan)] flex items-center justify-center group-hover:shadow-[0_0_15px_rgba(0,229,255,0.3)] transition-shadow">
-            <span className="text-[var(--cyan)] font-bold text-sm font-[Outfit]">TYW</span>
-          </div>
-          <span className="text-white font-[Outfit] font-semibold text-lg tracking-tight hidden sm:block">
+          <Image
+            src="/images/CDlogo.png"
+            alt="Test Your World"
+            width={40}
+            height={40}
+            className="rounded-full"
+          />
+          <span className="text-white font-outfit font-semibold text-lg tracking-tight hidden sm:block">
             Test Your World
           </span>
         </Link>
@@ -38,7 +43,7 @@ export function Header() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-2 text-sm text-gray-300 hover:text-[var(--cyan)] transition-colors font-medium"
+                className="px-3 py-2 text-sm text-gray-300 hover:text-cyan transition-colors font-medium"
               >
                 {link.label}
               </a>
@@ -46,7 +51,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-3 py-2 text-sm text-gray-300 hover:text-[var(--cyan)] transition-colors font-medium"
+                className="px-3 py-2 text-sm text-gray-300 hover:text-cyan transition-colors font-medium"
               >
                 {link.label}
               </Link>
@@ -56,7 +61,7 @@ export function Header() {
             href="https://testyourworld.myshopify.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-3 bg-[var(--cyan)] text-[var(--navy)] px-5 py-2 rounded-lg text-sm font-[Outfit] font-semibold hover:bg-[#00D4ED] transition-all hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(0,229,255,0.3)]"
+            className="ml-3 bg-cyan text-navy px-5 py-2 rounded-lg text-sm font-outfit font-semibold hover:bg-cyan-dim transition-all hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(0,229,255,0.3)]"
           >
             Get Your Kit
           </a>
@@ -80,7 +85,7 @@ export function Header() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="lg:hidden bg-[var(--navy)] border-t border-white/5 px-6 py-4 space-y-1 animate-fade-in">
+        <div className="lg:hidden bg-navy border-t border-white/5 px-6 py-4 space-y-1 animate-fade-in">
           {navLinks.map((link) =>
             link.external ? (
               <a
@@ -89,7 +94,7 @@ export function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="block px-3 py-3 text-gray-300 hover:text-[var(--cyan)] transition-colors font-medium"
+                className="block px-3 py-3 text-gray-300 hover:text-cyan transition-colors font-medium"
               >
                 {link.label}
               </a>
@@ -98,7 +103,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="block px-3 py-3 text-gray-300 hover:text-[var(--cyan)] transition-colors font-medium"
+                className="block px-3 py-3 text-gray-300 hover:text-cyan transition-colors font-medium"
               >
                 {link.label}
               </Link>
@@ -108,7 +113,7 @@ export function Header() {
             href="https://testyourworld.myshopify.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="block mt-3 bg-[var(--cyan)] text-[var(--navy)] px-5 py-3 rounded-lg text-center font-[Outfit] font-semibold"
+            className="block mt-3 bg-cyan text-navy px-5 py-3 rounded-lg text-center font-outfit font-semibold"
           >
             Get Your Kit
           </a>

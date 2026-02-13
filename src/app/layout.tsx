@@ -36,7 +36,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="font-dm-sans text-navy bg-white antialiased">
         <Header />
         <main>{children}</main>
         <Footer />

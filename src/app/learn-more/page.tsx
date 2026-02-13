@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Learn More",
@@ -51,26 +52,39 @@ const faqs = [
 export default function LearnMorePage() {
   return (
     <>
-      <section className="relative bg-[var(--navy)] pt-28 pb-12 lg:pt-36 lg:pb-16">
-        <div className="relative z-10 max-w-4xl mx-auto px-6">
-          <h1 className="text-3xl lg:text-5xl font-[Outfit] text-white mb-4">Learn More About Our Testing</h1>
-          <p className="text-gray-400 text-lg">Everything you need to know about how Test Your World compares to traditional methods.</p>
+      {/* HERO */}
+      <section className="relative bg-navy pt-32 pb-16 lg:pt-40 lg:pb-20 overflow-hidden">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 className="text-3xl lg:text-5xl font-outfit text-white mb-4">Learn More About Our Testing</h1>
+            <p className="text-gray-400 text-lg">Everything you need to know about how Test Your World compares to traditional methods.</p>
+          </div>
+          <div className="hidden lg:block">
+            <Image
+              src="/images/sniff.jpeg"
+              alt="Person sniffing the air"
+              width={480}
+              height={360}
+              className="rounded-2xl shadow-2xl object-cover"
+              priority
+            />
+          </div>
         </div>
       </section>
 
       {/* WHO IT'S FOR */}
       <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <span className="text-[var(--cyan)] text-sm font-[Outfit] font-medium tracking-widest uppercase block mb-3">WHO IT&apos;S FOR</span>
-            <h2 className="text-3xl lg:text-4xl font-[Outfit]">Know What You&apos;re Breathing</h2>
+            <span className="text-cyan text-sm font-outfit font-medium tracking-widest uppercase block mb-3">WHO IT&apos;S FOR</span>
+            <h2 className="text-3xl lg:text-4xl font-outfit">Know What You&apos;re Breathing</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {audiences.map((a) => (
-              <div key={a.title} className="bg-[var(--gray-100)] rounded-2xl p-7 border border-[var(--gray-200)] hover:border-[var(--cyan)]/30 transition-all">
+              <div key={a.title} className="bg-[#F7FAFC] rounded-2xl p-7 border border-gray-200 hover:border-cyan/30 transition-all hover:-translate-y-1 duration-300">
                 <span className="text-3xl mb-4 block">{a.icon}</span>
-                <h3 className="text-lg font-[Outfit] font-semibold mb-2">{a.title}</h3>
-                <p className="text-[var(--gray-500)] text-sm leading-relaxed">{a.text}</p>
+                <h3 className="text-lg font-outfit font-semibold mb-2">{a.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{a.text}</p>
               </div>
             ))}
           </div>
@@ -78,30 +92,30 @@ export default function LearnMorePage() {
       </section>
 
       {/* COMPARISON TABLE */}
-      <section className="py-20 bg-[var(--gray-100)]">
+      <section className="py-20 bg-[#F7FAFC]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-[Outfit] mb-3">How We Compare</h2>
-            <p className="text-[var(--gray-500)]">See how Test Your World stacks up against traditional testing methods.</p>
+            <h2 className="text-3xl lg:text-4xl font-outfit mb-3">How We Compare</h2>
+            <p className="text-gray-500">See how Test Your World stacks up against traditional testing methods.</p>
           </div>
-          <div className="bg-white rounded-2xl border border-[var(--gray-200)] overflow-hidden shadow-sm">
+          <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="bg-[var(--navy)]">
-                    <th className="text-left py-4 px-6 text-gray-400 font-[Outfit] font-semibold">Feature</th>
-                    <th className="text-left py-4 px-6 text-[var(--cyan)] font-[Outfit] font-bold">Test Your World</th>
-                    <th className="text-left py-4 px-6 text-gray-400 font-[Outfit] font-semibold">Air Pump Kits</th>
-                    <th className="text-left py-4 px-6 text-gray-400 font-[Outfit] font-semibold">Petri Dish Tests</th>
+                  <tr className="bg-navy">
+                    <th className="text-left py-4 px-6 text-gray-400 font-outfit font-semibold">Feature</th>
+                    <th className="text-left py-4 px-6 text-cyan font-outfit font-bold">Test Your World</th>
+                    <th className="text-left py-4 px-6 text-gray-400 font-outfit font-semibold">Air Pump Kits</th>
+                    <th className="text-left py-4 px-6 text-gray-400 font-outfit font-semibold">Petri Dish Tests</th>
                   </tr>
                 </thead>
                 <tbody>
                   {comparison.map((row, i) => (
-                    <tr key={row.feature} className={i % 2 === 0 ? "bg-white" : "bg-[var(--gray-100)]"}>
-                      <td className="py-4 px-6 font-medium text-[var(--navy)]">{row.feature}</td>
-                      <td className="py-4 px-6 text-[var(--cyan)] font-semibold">{row.tyw}</td>
-                      <td className="py-4 px-6 text-[var(--gray-500)]">{row.pump}</td>
-                      <td className="py-4 px-6 text-[var(--gray-500)]">{row.petri}</td>
+                    <tr key={row.feature} className={i % 2 === 0 ? "bg-white" : "bg-[#F7FAFC]"}>
+                      <td className="py-4 px-6 font-medium text-navy">{row.feature}</td>
+                      <td className="py-4 px-6 text-cyan font-semibold">{row.tyw}</td>
+                      <td className="py-4 px-6 text-gray-500">{row.pump}</td>
+                      <td className="py-4 px-6 text-gray-500">{row.petri}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -115,17 +129,17 @@ export default function LearnMorePage() {
       <section className="py-20 bg-white">
         <div className="max-w-3xl mx-auto px-6">
           <div className="text-center mb-14">
-            <span className="text-[var(--cyan)] text-sm font-[Outfit] font-medium tracking-widest uppercase block mb-3">QUESTIONS</span>
-            <h2 className="text-3xl lg:text-4xl font-[Outfit]">Frequently Asked Questions</h2>
+            <span className="text-cyan text-sm font-outfit font-medium tracking-widest uppercase block mb-3">QUESTIONS</span>
+            <h2 className="text-3xl lg:text-4xl font-outfit">Frequently Asked Questions</h2>
           </div>
           <div className="space-y-3">
             {faqs.map(({ q, a }) => (
-              <details key={q} className="group border border-[var(--gray-200)] rounded-xl overflow-hidden hover:border-[var(--cyan)]/30 transition-colors">
+              <details key={q} className="group border border-gray-200 rounded-xl overflow-hidden hover:border-cyan/30 transition-colors">
                 <summary className="flex items-center justify-between p-5 cursor-pointer">
-                  <span className="font-[Outfit] font-semibold text-[var(--navy)] pr-4">{q}</span>
-                  <span className="faq-icon text-[var(--cyan)] text-2xl font-light transition-transform duration-200 flex-shrink-0">+</span>
+                  <span className="font-outfit font-semibold text-navy pr-4">{q}</span>
+                  <span className="faq-icon text-cyan text-2xl font-light transition-transform duration-200 flex-shrink-0">+</span>
                 </summary>
-                <div className="px-5 pb-5 text-[var(--gray-500)] leading-relaxed text-sm">{a}</div>
+                <div className="px-5 pb-5 text-gray-500 leading-relaxed text-sm">{a}</div>
               </details>
             ))}
           </div>
@@ -133,11 +147,11 @@ export default function LearnMorePage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[var(--navy)] py-16 text-center">
+      <section className="bg-navy py-16 text-center">
         <div className="max-w-2xl mx-auto px-6">
-          <h2 className="text-2xl lg:text-3xl font-[Outfit] text-white mb-4">Ready to Find Out?</h2>
+          <h2 className="text-2xl lg:text-3xl font-outfit text-white mb-4">Ready to Find Out?</h2>
           <p className="text-gray-400 mb-8">$69. No appointments. No strangers. Just answers.</p>
-          <a href="https://testyourworld.myshopify.com" target="_blank" rel="noopener noreferrer" className="inline-block bg-[var(--cyan)] text-[var(--navy)] px-10 py-4 rounded-lg font-[Outfit] font-bold text-lg hover:bg-[#00D4ED] transition-all">
+          <a href="https://testyourworld.myshopify.com" target="_blank" rel="noopener noreferrer" className="inline-block bg-cyan text-navy px-10 py-4 rounded-lg font-outfit font-bold text-lg hover:bg-cyan-dim transition-all">
             Get Your Kit
           </a>
         </div>
