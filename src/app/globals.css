@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
 
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --color-navy: #0B1426;
@@ -16,6 +17,38 @@
 
   --font-family-outfit: 'Outfit', sans-serif;
   --font-family-dm-sans: 'DM Sans', sans-serif;
+}
+
+/*
+ * Tailwind v4 compatibility layer
+ * Restores v3 default behaviors that changed in v4
+ */
+
+/* v4 changed border default color from gray-200 to currentColor */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+/* v4 changed button cursor from pointer to default */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* v4 changed placeholder from gray-400 to currentColor at 50% opacity */
+@layer base {
+  ::placeholder {
+    color: #A0AEC0;
+    opacity: 1;
+  }
 }
 
 :root {
