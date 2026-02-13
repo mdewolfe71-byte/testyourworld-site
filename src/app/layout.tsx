@@ -26,6 +26,17 @@ export const metadata: Metadata = {
     description:
       "Your filter knows what's in your air. We test it. $69. No appointments. No strangers.",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  manifest: "/site.webmanifest",
   robots: { index: true, follow: true },
 };
 
@@ -36,6 +47,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="theme-color" content="#0B1426" />
+      </head>
       <body className="font-dm-sans text-navy bg-white antialiased">
         <Header />
         <main>{children}</main>
