@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Surface Swab Testing",
-  description: "See something suspicious? Swab it. Send it. Stop guessing. Identifies exact mold species from any surface. Results in 3–5 days. $69 USD or CAD.",
+  description: "See something suspicious? Swab it. Send it. Stop guessing. Identifies exact mold species from any surface. Results in 3–5 days. $32 USD or CAD.",
 };
 
 const swabSpots = [
@@ -77,7 +77,7 @@ export default function SwabTestingPage() {
                 ))}
               </ul>
               <a href="https://testyourworld.myshopify.com" target="_blank" rel="noopener noreferrer" className="block bg-cyan text-navy text-center py-3.5 rounded-lg font-outfit font-bold text-lg hover:bg-cyan-dim transition-all">
-                Get Swab Kit — $69
+                Get Swab Kit — $32
               </a>
             </div>
           </div>
@@ -151,7 +151,7 @@ export default function SwabTestingPage() {
           </h2>
           <p className="text-gray-400 mb-8">Real lab. Real scientists. Real answers. For that one spot that&apos;s been bugging you.</p>
           <a href="https://testyourworld.myshopify.com" target="_blank" rel="noopener noreferrer" className="inline-block bg-cyan text-navy px-10 py-4 rounded-lg font-outfit font-bold text-lg hover:bg-cyan-dim transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,229,255,0.3)]">
-            Get Your Swab Kit — $69
+            Get Your Swab Kit — $32
           </a>
         </div>
       </section>

@@ -16,6 +16,7 @@ const tests = [
     tagline: "Stick it. Wait. Mail it. Done.",
     quote: '"I want answers, not a craft project."',
     image: "/images/patchonfilter.jpeg",
+    price: "$69",
     shopUrl: "https://testyourworld.myshopify.com/products/airpatch-kit-whole-home-air-quality-test",
     features: [
       '4"×4" patch works anywhere air moves',
@@ -34,6 +35,7 @@ const tests = [
     tagline: "For the hands-on homeowner.",
     quote: '"That dusty filter is about to become useful."',
     image: "/images/filtercut.png",
+    price: "$69",
     shopUrl: "https://testyourworld.myshopify.com/products/direct-filter-test-no-kit-needed-20-off",
     features: [
       "Uses your existing used filter (30+ days old)",
@@ -51,6 +53,7 @@ const tests = [
     tagline: "Swab it. Send it. Stop guessing.",
     quote: '"Is that mold or a committed dust bunny?"',
     image: "/images/rs=h_175,m (1).webp",
+    price: "$32",
     shopUrl: "https://testyourworld.myshopify.com/products/surface-swab-mold-test-report",
     features: [
       "Swab any suspicious surface",
@@ -242,7 +245,7 @@ export default function HomePage() {
                       rel="noopener noreferrer"
                       className="block bg-cyan text-navy text-center py-3 rounded-lg font-outfit font-bold hover:bg-cyan-dim transition-all hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(0,229,255,0.3)]"
                     >
-                      Get {test.name} — $69
+                      Get {test.name} — {test.price}
                     </a>
                   </div>
                 </div>
