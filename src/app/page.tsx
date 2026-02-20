@@ -376,7 +376,42 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ───── 9. FINAL CTA ───── */}
+      {/* ───── 9. COST CALCULATOR CTA ───── */}
+      <section className="py-20 lg:py-28 bg-navy relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          <div className="inline-block mb-6 px-4 py-1.5 rounded-full border border-coral/20 bg-coral/5">
+            <span className="text-coral text-sm font-medium font-outfit tracking-wide">FREE INTERACTIVE TOOL</span>
+          </div>
+          <h2 className="text-3xl lg:text-5xl font-outfit text-white mb-4">
+            What&apos;s Bad Air <span className="text-coral">Really</span> Costing You?
+          </h2>
+          <p className="text-gray-400 text-lg mb-4 max-w-2xl mx-auto">
+            Most homeowners don&apos;t realize poor air quality silently drains thousands through energy waste, health costs, and reduced home value.
+          </p>
+          <p className="text-white font-semibold mb-10">
+            Take our 2-minute quiz and find out your 5-year cost of not testing.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/cost-calculator"
+              className="bg-coral text-white px-8 py-4 rounded-lg font-outfit font-bold text-lg hover:bg-coral/90 transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(255,107,107,0.3)]"
+            >
+              Calculate My Hidden Costs
+            </Link>
+            <a
+              href="https://testyourworld.myshopify.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-white/20 text-white px-8 py-4 rounded-lg font-outfit font-semibold text-lg hover:border-cyan hover:text-cyan transition-all text-center"
+            >
+              Skip to Kit — $69
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ───── 10. FINAL CTA ───── */}
       <section className="bg-navy py-20 lg:py-28 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan rounded-full opacity-[0.03] blur-[100px]" />
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">

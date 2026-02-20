@@ -9,6 +9,7 @@ const navLinks = [
   { href: "https://testyourworld.myshopify.com", label: "Shop", external: true },
   { href: "/test-your-air", label: "Test Your Air" },
   { href: "/swab-testing", label: "Swab Testing" },
+  { href: "/cost-calculator", label: "Cost Calculator" },
   { href: "/learn-more", label: "Learn More" },
   { href: "https://testyourworld.vercel.app", label: "Client Portal", external: true },
   { href: "/sample-report", label: "Sample Report" },
