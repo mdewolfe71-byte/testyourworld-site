@@ -194,7 +194,7 @@ const expandableSections = [
     title: "Basidiospores (25+ Types)",
     content: (
       <div className="space-y-6">
-        <p className="text-gray-300 leading-relaxed">Basidiospores come from mushrooms and other fungi — many are outdoor allergens or wood-decay indicators that end up in your home's air.</p>
+        <p className="text-gray-300 leading-relaxed">Basidiospores come from mushrooms and other fungi — many are outdoor allergens or wood-decay indicators that end up in your home&apos;s air.</p>
         <div>
           <h4 className="text-cyan font-outfit font-bold text-lg mb-3">Common Mushroom & Wood Decay Spores</h4>
           <ul className="space-y-2 text-gray-300">
