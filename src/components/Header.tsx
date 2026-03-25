@@ -11,6 +11,7 @@ const navLinks = [
   { href: "/swab-testing", label: "Swab Testing" },
   { href: "/cost-calculator", label: "Cost Calculator" },
   { href: "/learn-more", label: "Learn More" },
+  { href: "/what-we-test-for", label: "What We Test For" },
   { href: "https://testyourworld.vercel.app", label: "Client Portal", external: true },
   { href: "/sample-report", label: "Sample Report" },
 ];
