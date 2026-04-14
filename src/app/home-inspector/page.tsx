@@ -30,7 +30,7 @@ const howItWorks = [
   {
     step: "4",
     title: "Client Gets Results",
-    desc: "Full QFF-calculated report delivered to client portal in 5–7 days.",
+    desc: "Full QFF-calculated report delivered to client portal — as fast as next business day.",
     sub: "Spores/m³. 182+ particle types. Plain English.",
   },
 ];
@@ -56,8 +56,8 @@ const whyPartners = [
   },
   {
     icon: "⚡",
-    title: "5–7 Day Turnaround",
-    text: "Results back before your inspection report is even finalized. No waiting weeks for lab culture results.",
+    title: "Next-Day Turnaround",
+    text: "Results as fast as next business day after we receive your sample — before your inspection report is even finalized.",
     accent: "Faster than culture-based methods",
   },
   {
@@ -77,7 +77,7 @@ const whyPartners = [
 const vsTable = [
   { feature: "Sampling method", tyw: "Air cassette (Bio-Pump)", competitor: "Petri dish / culture" },
   { feature: "Result type", tyw: "Spores/m³ (QFF calculated)", competitor: "Colony counts" },
-  { feature: "Turnaround", tyw: "5–7 days", competitor: "7–14 days" },
+  { feature: "Turnaround", tyw: "As fast as next business day", competitor: "7–14 days" },
   { feature: "Species identified", tyw: "182+ types", competitor: "Typically 20–36" },
   { feature: "Fragile spores (Stachybotrys)", tyw: "✓ Detected", competitor: "Often missed (culture bias)" },
   { feature: "Viable + non-viable", tyw: "✓ Both", competitor: "Viable only" },
@@ -128,7 +128,7 @@ export default function HomeInspectorPage() {
               Built for <span className="text-gradient">Inspectors</span>
             </h1>
             <p className="text-gray-400 text-lg max-w-xl mb-4">
-              Professional-grade air cassette sampling with QFF-calculated spores/m³ results. 182+ particle types. 5–7 day turnaround. A report your clients can actually use.
+              Professional-grade air cassette sampling with QFF-calculated spores/m³ results. 182+ particle types. Results as fast as next business day. A report your clients can actually use.
             </p>
             <p className="text-cyan font-semibold mb-10">
               Add air quality to every inspection. No lab drops. No couriers. No complications.
