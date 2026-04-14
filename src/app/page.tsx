@@ -75,7 +75,7 @@ const tests = [
     image: "/images/Scanner.JPG",
     price: "Partner Pricing",
     shopUrl: null,
-    linkHref: "/home-inspector",
+    linkHref: "/professionals",
     features: [
       "Air pump cassette sampling (Bio-Pump compatible)",
       "QFF-calculated spores/m³ results",

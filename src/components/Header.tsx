@@ -10,7 +10,7 @@ const navLinks = [
   { href: "/test-your-air", label: "Test Your Air" },
   { href: "/airpatch", label: "AirPatch" },
   { href: "/swab-testing", label: "Swab Testing" },
-  { href: "/home-inspector", label: "Home Inspectors" },
+  { href: "/professionals", label: "For Professionals" },
   { href: "/cost-calculator", label: "Cost Calculator" },
   { href: "/learn-more", label: "Learn More" },
   { href: "/what-we-test-for", label: "What We Test For" },
