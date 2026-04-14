@@ -216,10 +216,10 @@ export default function HomeInspectorPage() {
                 Raw Count → <span className="text-cyan">Spores/m³</span>
               </h2>
               <p className="text-gray-600 leading-relaxed mb-6">
-                Most labs hand you a raw count from the cassette slide and leave interpretation to you. We don't.
+                Most labs hand you a raw count from the cassette slide and leave interpretation to you. We don&apos;t.
               </p>
               <p className="text-gray-600 leading-relaxed mb-6">
-                Our proprietary <strong>Quantitative Filter Forensics (QFF)</strong> engine processes every sample using the cassette's flow rate, sampling duration, and volume to produce a validated spores/m³ result — the same metric used in industrial hygiene and referenced by the EPA.
+                Our proprietary <strong>Quantitative Filter Forensics (QFF)</strong> engine processes every sample using the cassette&apos;s flow rate, sampling duration, and volume to produce a validated spores/m³ result — the same metric used in industrial hygiene and referenced by the EPA.
               </p>
               <p className="text-gray-600 leading-relaxed">
                 That means your clients get a report they can hand directly to a remediation contractor, allergist, or real estate attorney — with numbers that mean something.
