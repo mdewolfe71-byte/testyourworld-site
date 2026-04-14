@@ -18,6 +18,7 @@ const tests = [
     image: "/images/patchonfilter.jpeg",
     price: "$69",
     shopUrl: "https://testyourworld.myshopify.com/products/airpatch-kit-whole-home-air-quality-test",
+    linkHref: "/airpatch",
     features: [
       '4"×4" patch works anywhere air moves',
       "Test whole home via HVAC filter",
@@ -37,6 +38,7 @@ const tests = [
     image: "/images/filtercut.png",
     price: "$69",
     shopUrl: "https://testyourworld.myshopify.com/products/direct-filter-test-no-kit-needed-20-off",
+    linkHref: null,
     features: [
       "Uses your existing used filter (30+ days old)",
       "Heavy-duty filter shears included (cuts wire mesh)",
@@ -55,12 +57,32 @@ const tests = [
     image: "/images/rs=h_175,m (1).webp",
     price: "$32",
     shopUrl: "https://testyourworld.myshopify.com/products/surface-swab-mold-test-report",
+    linkHref: "/swab-testing",
     features: [
       "Swab any suspicious surface",
       "Walls, ceilings, basements, bathrooms",
       "Window sills, under sinks, behind furniture",
       "Identifies exact mold species",
       "Results in 3–5 days",
+    ],
+  },
+  {
+    badge: "FOR INSPECTORS",
+    badgeColor: "bg-emerald-600",
+    name: "Home Inspector",
+    tagline: "Air cassette testing. QFF-calculated results.",
+    quote: '"Give your clients data that actually means something."',
+    image: "/images/Scanner.JPG",
+    price: "Partner Pricing",
+    shopUrl: null,
+    linkHref: "/home-inspector",
+    features: [
+      "Air pump cassette sampling (Bio-Pump compatible)",
+      "QFF-calculated spores/m³ results",
+      "182+ particle types analyzed",
+      "5–7 day turnaround",
+      "Branded client reports via TYW portal",
+      "Partner dashboard for order tracking",
     ],
   },
 ];
@@ -203,9 +225,9 @@ export default function HomePage() {
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-5xl font-outfit text-white mb-4">Pick Your Test</h2>
-            <p className="text-gray-400 text-lg">Three ways to test. All easy. None require talking to strangers.</p>
+            <p className="text-gray-400 text-lg">Four ways to test. All backed by the same accredited lab.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {tests.map((test) => (
               <div
                 key={test.name}
@@ -239,14 +261,23 @@ export default function HomePage() {
                         </li>
                       ))}
                     </ul>
-                    <a
-                      href={test.shopUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block bg-cyan text-navy text-center py-3 rounded-lg font-outfit font-bold hover:bg-cyan-dim transition-all hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(0,229,255,0.3)]"
-                    >
-                      Get {test.name} — {test.price}
-                    </a>
+                    {test.shopUrl ? (
+                      <a
+                        href={test.shopUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block bg-cyan text-navy text-center py-3 rounded-lg font-outfit font-bold hover:bg-cyan-dim transition-all hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(0,229,255,0.3)]"
+                      >
+                        Get {test.name} — {test.price}
+                      </a>
+                    ) : (
+                      <Link
+                        href={test.linkHref!}
+                        className="block bg-emerald-600 text-white text-center py-3 rounded-lg font-outfit font-bold hover:bg-emerald-700 transition-all hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(5,150,105,0.3)]"
+                      >
+                        Learn More — Partner Program
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>

@@ -496,7 +496,9 @@ export default function WhatWeTestForPage() {
               Our direct microscopy approach detects <strong className="text-white">all airborne spores</strong> — viable, dormant, fragile, and dead. Culture testing (used by most home kits) only shows what can grow on agar plates, missing critical organisms like powdery mildew and fragile spores like Stachybotrys that collapse before they can be cultured.
             </p>
             <p className="text-gray-300 leading-relaxed">
-              Your HVAC filter passively collects particles over weeks or months — giving a far more complete picture of your home&apos;s air than any 10-minute air pump sample.
+              Your HVAC filter passively collects particles over weeks or months — giving a complete long-term picture of your home&apos;s air. For professional inspections requiring a point-in-time air sample, we also offer{" "}
+              <a href="/home-inspector" className="text-cyan hover:underline">air cassette testing</a>{" "}
+              with QFF-calculated spores/m³ results.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
