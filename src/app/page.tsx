@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import WhyCards from "@/components/WhyCards";
 
 export const metadata: Metadata = {
   title: "Test Your World — Know What You're Breathing",
@@ -22,9 +23,9 @@ const tests = [
     features: [
       '4"×4" patch works anywhere air moves',
       "Test whole home via HVAC filter",
-      "Test a single room (basement, bedroom, nursery)",
+      "Test a single room — basement, nursery, bedroom",
       "Test your air purifier — is it actually working?",
-      "Test DIY setups (box fans, Corsi-Rosenthal boxes)",
+      "Test DIY setups like box fans or Corsi-Rosenthal boxes",
       "7-day sampling period",
       "Results in 5–7 days",
     ],
@@ -40,8 +41,8 @@ const tests = [
     shopUrl: "https://testyourworld.myshopify.com/products/direct-filter-test-no-kit-needed-20-off",
     linkHref: null,
     features: [
-      "Uses your existing used filter (30+ days old)",
-      "Heavy-duty filter shears included (cuts wire mesh)",
+      "Uses your existing used filter — 30+ days old",
+      "Heavy-duty filter shears included — cuts wire mesh",
       "Nitrile gloves included",
       "Months of accumulated data in one sample",
       "Whole home analysis from one cut",
@@ -77,7 +78,7 @@ const tests = [
     shopUrl: null,
     linkHref: "/professionals",
     features: [
-      "Air pump cassette sampling (Bio-Pump compatible)",
+      "Air pump cassette sampling — Bio-Pump compatible",
       "QFF-calculated spores/m³ results",
       "182+ particle types analyzed",
       "5–7 day turnaround",
@@ -87,15 +88,6 @@ const tests = [
   },
 ];
 
-const whyCards = [
-  { icon: "🏠", title: "No Appointments", text: "Test on your schedule. In your pajamas. We don't judge.", accent: "Your house, your rules" },
-  { icon: "🚫", title: "No Strangers", text: "Nobody comes to your house. Nobody sees your dishes in the sink.", accent: "Your secret's safe" },
-  { icon: "🌀", title: "Test Your Purifier", text: "Spent $400 on an air purifier? Find out if it's actually working.", accent: "Trust but verify" },
-  { icon: "🤖", title: "AI-Powered Analysis", text: "AI-assisted microscopy. Lab-grade accuracy. Fancy robots.", accent: "Science, but cool" },
-  { icon: "💰", title: "Same Price US or Canada", text: "$69 USD or CAD. No exchange rate games. No surprises.", accent: "Fair is fair" },
-  { icon: "📊", title: "Reports You Can Read", text: "Written in English. Not scientist. Share with doctors or contractors.", accent: "Finally, proof" },
-];
-
 const faqs = [
   {
     q: "What's the difference between AirPatch and FilterCut?",
@@ -103,11 +95,11 @@ const faqs = [
   },
   {
     q: "Can I test if my air purifier is actually working?",
-    a: "Yes! Stick an AirPatch on the output side of your purifier. If the air coming out is clean, money well spent. If not... well, now you know.",
+    a: "Yes. Stick an AirPatch on the output side of your purifier. If the air coming out is clean, money well spent. If not — now you know.",
   },
   {
     q: "What will the test show me?",
-    a: "Your report identifies 36+ mold species, allergens, and particulates found in your sample. Results are delivered in spores per cubic meter — the same standard used by the EPA — with plain-English explanations of what was found and what it means.",
+    a: "Your report identifies 182+ mold species, allergens, and particulates found in your sample. Results are delivered in spores per cubic meter — the same standard used by the EPA — with plain-English explanations of what was found and what it means.",
   },
   {
     q: "How long does it take to get results?",
@@ -115,7 +107,7 @@ const faqs = [
   },
   {
     q: "Why is it the same price in US and Canada?",
-    a: "Because we operate labs on both sides of the border. No middlemen, no currency markups. $69 is $69 wherever you are.",
+    a: "Because we operate accredited labs on both sides of the border. No middlemen, no currency markups. $69 is $69 wherever you are.",
   },
   {
     q: "What if my results show a problem?",
@@ -130,15 +122,14 @@ export default function HomePage() {
       <section className="relative bg-navy pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan rounded-full opacity-[0.04] blur-[120px]" />
-
         <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="text-center lg:text-left">
             <div className="inline-block mb-6 px-4 py-1.5 rounded-full border border-cyan/20 bg-cyan/5">
               <span className="text-cyan text-sm font-medium font-outfit tracking-wide">AIR QUALITY TESTING MADE SIMPLE</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-outfit font-extrabold text-white mb-6 animate-fade-in-up">
-              What&apos;s In <span className="text-gradient">Your</span> Air?
-              <br />
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-outfit font-extrabold text-white mb-6 animate-fade-in-up leading-tight">
+              What&apos;s In <span className="text-gradient">Your</span> Air?{" "}
+              <br className="hidden lg:block" />
               Your Filter Knows.
             </h1>
             <p className="text-lg text-gray-400 mb-2 animate-fade-in-up delay-1">
@@ -177,7 +168,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ───── 2. YOU'RE BREATHING SOMETHING ───── */}
+      {/* ───── 2. HOOK ───── */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-3xl lg:text-5xl font-outfit mb-6">
@@ -234,12 +225,7 @@ export default function HomePage() {
                 className="bg-navy-light border border-white/5 rounded-2xl overflow-hidden hover:border-cyan/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(0,229,255,0.08)] flex flex-col"
               >
                 <div className="relative h-48 bg-navy-mid">
-                  <Image
-                    src={test.image}
-                    alt={test.name}
-                    fill
-                    className="object-cover"
-                  />
+                  <Image src={test.image} alt={test.name} fill className="object-cover" />
                 </div>
                 <div className="p-7 flex flex-col flex-1">
                   <div className="flex items-center gap-3 mb-4">
@@ -256,7 +242,9 @@ export default function HomePage() {
                     <ul className="space-y-2.5 mb-6">
                       {test.features.map((f, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
-                          <svg className="w-4 h-4 text-cyan mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                          <svg className="w-4 h-4 text-cyan mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>
                           {f}
                         </li>
                       ))}
@@ -273,7 +261,7 @@ export default function HomePage() {
                     ) : (
                       <Link
                         href={test.linkHref!}
-                        className="block bg-emerald-600 text-white text-center py-3 rounded-lg font-outfit font-bold hover:bg-emerald-700 transition-all hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(5,150,105,0.3)]"
+                        className="block bg-emerald-600 text-white text-center py-3 rounded-lg font-outfit font-bold hover:bg-emerald-700 transition-all hover:-translate-y-0.5"
                       >
                         Learn More — Partner Program
                       </Link>
@@ -295,33 +283,23 @@ export default function HomePage() {
             </h2>
             <p className="text-cyan font-semibold text-sm mb-4">Analysis performed to the highest standards</p>
             <p className="text-gray-500 leading-relaxed mb-6">
-              Your samples go to an actual laboratory. Actual scientists look at them. Not just a guy named Steve with a magnifying glass. We use AI-assisted microscopy for lab-grade accuracy and identify 36+ mold species.
+              Your samples go to an actual accredited laboratory. Actual scientists look at them. Not a guy named Steve with a magnifying glass. We use AI-assisted microscopy for lab-grade accuracy and identify 182+ organism types.
             </p>
             <div className="flex gap-6 mb-8">
-              {["Lab Tested", "AI-Powered", "Accredited"].map((label) => (
+              {["Lab Tested", "AI-Assisted", "Accredited"].map((label) => (
                 <div key={label} className="flex items-center gap-2 text-sm text-gray-500">
                   <div className="w-8 h-8 rounded-full bg-navy flex items-center justify-center">
-                    <svg className="w-4 h-4 text-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    <svg className="w-4 h-4 text-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
                   </div>
                   {label}
                 </div>
               ))}
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <Image
-                src="/images/Scanner.JPG"
-                alt="Microscopy scanner in the lab"
-                width={280}
-                height={200}
-                className="rounded-2xl object-cover w-full h-48 shadow-lg"
-              />
-              <Image
-                src="/images/Image 5.jpg"
-                alt="AI spore counting analysis"
-                width={280}
-                height={200}
-                className="rounded-2xl object-cover w-full h-48 shadow-lg"
-              />
+              <Image src="/images/Scanner.JPG" alt="Microscopy scanner in the lab" width={280} height={200} className="rounded-2xl object-cover w-full h-48 shadow-lg" />
+              <Image src="/images/Image 5.jpg" alt="AI spore counting analysis" width={280} height={200} className="rounded-2xl object-cover w-full h-48 shadow-lg" />
             </div>
           </div>
           <div>
@@ -329,19 +307,15 @@ export default function HomePage() {
               Real <span className="text-coral">Simple.</span>
             </h2>
             <p className="text-coral font-semibold text-sm mb-4">Reports you can actually understand</p>
-            <p className="text-gray-500 leading-relaxed mb-6">
+            <p className="text-gray-500 leading-relaxed mb-8">
               Written in English. Not scientist. Your report includes what was found, what it means, and what to do next. Results in spores per cubic meter — the same standard used by the EPA. Share with doctors, contractors, or that know-it-all neighbor.
             </p>
-            <div className="flex gap-6">
-              {["Clear Reports", "Human Support"].map((label) => (
-                <div key={label} className="flex items-center gap-2 text-sm text-gray-500">
-                  <div className="w-8 h-8 rounded-full bg-navy flex items-center justify-center">
-                    <svg className="w-4 h-4 text-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-                  </div>
-                  {label}
-                </div>
-              ))}
-            </div>
+            <Link
+              href="/sample-report"
+              className="inline-block border-2 border-navy text-navy px-6 py-3 rounded-xl font-outfit font-bold hover:bg-navy hover:text-white transition-all"
+            >
+              See a Sample Report
+            </Link>
           </div>
         </div>
       </section>
@@ -350,7 +324,7 @@ export default function HomePage() {
       <section className="bg-navy py-16">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
-            { stat: "36+", label: "Mold Species Identified", sub: "The fuzzy. The musty. The scary." },
+            { stat: "182+", label: "Organism Types Identified", sub: "Mold. Allergens. Particles. All of it." },
             { stat: "$69", label: "USD or CAD", sub: "Same price both sides of the border." },
             { stat: "5–7", label: "Days to Results", sub: "Faster than your last Temu order." },
             { stat: "0", label: "Strangers in Your Home", sub: "Introverts, rejoice." },
@@ -371,20 +345,47 @@ export default function HomePage() {
             <h2 className="text-3xl lg:text-5xl font-outfit mb-4">Why Test With Us?</h2>
             <p className="text-gray-500 text-lg">Because guessing is exhausting and WebMD already has you worried.</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {whyCards.map((card) => (
-              <div key={card.title} className="bg-white rounded-2xl p-7 border border-gray-200 hover:border-cyan/30 hover:-translate-y-2 transition-all duration-300 hover:shadow-xl">
-                <span className="text-3xl mb-4 block">{card.icon}</span>
-                <h3 className="text-xl font-outfit font-semibold mb-2">{card.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-3">{card.text}</p>
-                <span className="text-cyan text-sm font-semibold">{card.accent}</span>
+          <WhyCards />
+        </div>
+      </section>
+
+      {/* ───── 8. WHAT WE TEST FOR CALLOUT ───── */}
+      <section className="py-20 lg:py-28 bg-navy">
+        <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <p className="text-cyan text-sm font-outfit font-semibold uppercase tracking-widest mb-3">Complete panel transparency</p>
+            <h2 className="text-3xl lg:text-4xl font-outfit font-extrabold text-white mb-4">
+              182+ organisms.<br />Every one explained.
+            </h2>
+            <p className="text-gray-400 leading-relaxed mb-6">
+              Most tests tell you what was found. We show you the full panel — including everything we looked for and didn&apos;t find. Because knowing something wasn&apos;t detected is just as valuable as knowing it was.
+            </p>
+            <Link
+              href="/what-we-test-for"
+              className="inline-block bg-cyan text-navy px-6 py-3 rounded-xl font-outfit font-bold hover:bg-cyan-dim transition-all hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(0,229,255,0.3)]"
+            >
+              See the Complete Panel
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { label: "Water Damage Indicators", count: "8 species" },
+              { label: "Outdoor Mold Load", count: "12 species" },
+              { label: "Allergens", count: "10 types" },
+              { label: "Airborne Particles", count: "9 types" },
+              { label: "Cleanliness Indicators", count: "8 types" },
+              { label: "Specialty & Rare", count: "10+ types" },
+            ].map(({ label, count }) => (
+              <div key={label} className="bg-navy-light border border-white/5 rounded-xl px-4 py-4 hover:border-cyan/20 transition-colors">
+                <p className="text-cyan text-xs font-outfit font-semibold mb-1">{count}</p>
+                <p className="text-white text-sm font-outfit font-medium leading-tight">{label}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ───── 8. FAQ ───── */}
+      {/* ───── 9. FAQ ───── */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-3xl mx-auto px-6">
           <div className="text-center mb-14">
@@ -398,16 +399,14 @@ export default function HomePage() {
                   <span className="font-outfit font-semibold text-navy pr-4">{q}</span>
                   <span className="faq-icon text-cyan text-2xl font-light transition-transform duration-200 flex-shrink-0">+</span>
                 </summary>
-                <div className="px-5 pb-5 text-gray-500 leading-relaxed text-sm">
-                  {a}
-                </div>
+                <div className="px-5 pb-5 text-gray-500 leading-relaxed text-sm">{a}</div>
               </details>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ───── 9. COST CALCULATOR CTA ───── */}
+      {/* ───── 10. COST CALCULATOR CTA ───── */}
       <section className="py-20 lg:py-28 bg-navy relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
@@ -424,10 +423,7 @@ export default function HomePage() {
             Take our 2-minute quiz and find out your 5-year cost of not testing.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/cost-calculator"
-              className="bg-coral text-white px-8 py-4 rounded-lg font-outfit font-bold text-lg hover:bg-coral/90 transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(255,107,107,0.3)]"
-            >
+            <Link href="/cost-calculator" className="bg-coral text-white px-8 py-4 rounded-lg font-outfit font-bold text-lg hover:bg-coral/90 transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(255,107,107,0.3)]">
               Calculate My Hidden Costs
             </Link>
             <a
@@ -442,7 +438,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ───── 10. FINAL CTA ───── */}
+      {/* ───── 11. FINAL CTA ───── */}
       <section className="bg-navy py-20 lg:py-28 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan rounded-full opacity-[0.03] blur-[100px]" />
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
@@ -463,18 +459,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ───── 10. VIDEO SECTION ───── */}
+      {/* ───── 12. VIDEO ───── */}
       <section className="py-20 lg:py-28 bg-[#F7FAFC]">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl lg:text-4xl font-outfit mb-8">See How It Works</h2>
           <div className="rounded-2xl overflow-hidden shadow-2xl bg-navy">
-            <video
-              controls
-              playsInline
-              preload="metadata"
-              className="w-full aspect-video"
-              poster="/images/patchonfilter.jpeg"
-            >
+            <video controls playsInline preload="metadata" className="w-full aspect-video" poster="/images/patchonfilter.jpeg">
               <source src="/images/Video.MOV" type="video/quicktime" />
               <source src="/images/Video.MOV" type="video/mp4" />
               Your browser does not support the video tag.
