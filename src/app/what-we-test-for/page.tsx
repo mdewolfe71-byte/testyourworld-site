@@ -1,542 +1,422 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
+
+// ─── DATA ────────────────────────────────────────────────────────────────────
 
 const categories = [
   {
-    icon: "🍄",
-    title: "Mold & Fungal Spores",
-    count: "90+ types",
-    items: [
-      "Stachybotrys (Black Mold)",
-      "Aspergillus species",
-      "Penicillium species",
-      "Cladosporium species",
-      "Chaetomium (water damage)",
-      "Alternaria",
-      "Fusarium",
-      "Botrytis",
-      "Plus 80+ additional species",
+    id: "water-damage",
+    label: "Water Damage Indicators",
+    shortLabel: "Water Damage",
+    summary: "Species that signal active or past moisture intrusion. Finding these at elevated levels is one of the most actionable results a filter test can produce.",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 2C6 9 4 13 4 16a8 8 0 0016 0c0-3-2-7-8-14z" />
+      </svg>
+    ),
+    accentClass: "text-blue-600",
+    borderClass: "border-l-blue-500",
+    species: [
+      { name: "Stachybotrys", aka: "Black Mold", threshold: "≤10 normal", note: "The most notorious water-damage mold. Requires sustained moisture (paper, drywall). Low counts are common; elevated counts signal an active source." },
+      { name: "Chaetomium", aka: null, threshold: "≤15 normal", note: "A reliable indicator of cellulose degradation from water. Often found with Stachybotrys in chronically wet materials." },
+      { name: "Chartarum", aka: null, threshold: "≤10 normal", note: "Closely related to Stachybotrys. Requires similar wet conditions to grow. Treated with the same urgency." },
+      { name: "Fusarium", aka: null, threshold: "≤20 normal", note: "Water intrusion indicator. Can produce mycotoxins. Also found in building materials damaged by flooding." },
+      { name: "Ulocladium", aka: null, threshold: "≤20 normal", note: "Found primarily on surfaces with persistent moisture. A strong indicator of humidity problems." },
+      { name: "Trichoderma", aka: "Green Mold", threshold: "≤15 normal", note: "Found in wet wood and damp building materials. Green spores. Not commonly harmful but signals moisture." },
+      { name: "Scopulariopsis", aka: null, threshold: "≤15 normal", note: "Grows in damp organic materials. Associated with bathroom mold and water-damaged paper." },
+      { name: "Paecilomyces", aka: null, threshold: "≤15 normal", note: "Opportunistic mold growing in damp insulation and soil. Elevated counts may indicate HVAC moisture issues." },
     ],
   },
   {
-    icon: "🌾",
-    title: "Ascospores",
-    count: "40+ variants",
-    items: [
-      "Water damage indicators",
-      "Outdoor contamination markers",
-      "Building material degradation",
-      "Environmental condition indicators",
-      "Multiple morphological types",
+    id: "outdoor-mold",
+    label: "Outdoor Mold Load",
+    shortLabel: "Outdoor Mold",
+    summary: "Spores that originate outside and enter through ventilation, open windows, and on clothing. Some level of outdoor infiltration is completely normal. Thresholds reflect this.",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+    ),
+    accentClass: "text-emerald-600",
+    borderClass: "border-l-emerald-500",
+    species: [
+      { name: "Cladosporium", aka: null, threshold: "≤500 normal", note: "The most common outdoor mold worldwide. Found on dead plant material. Highly seasonal. Counts spike in fall. At normal outdoor infiltration levels, not a concern." },
+      { name: "Alternaria", aka: null, threshold: "≤200 normal", note: "Common outdoor allergen associated with leaf debris and grains. A significant asthma and allergy trigger for sensitized individuals." },
+      { name: "Basidiospores", aka: "Mushroom Spores", threshold: "≤1,000 normal", note: "Spores from mushrooms and wood-decay fungi. Extremely abundant outdoors. Expected in any home near trees or grass." },
+      { name: "Ascospores", aka: null, threshold: "≤2,000 normal", note: "Broad category of sexual spores from sac fungi. Very common outdoors, especially after rain. High counts may indicate water-damaged materials indoors." },
+      { name: "Epicoccum", aka: null, threshold: "≤200 normal", note: "Common on decaying plant matter. Yellow-orange colonies. Seasonal, follows plant growth cycles." },
+      { name: "Botrytis", aka: "Gray Mold", threshold: "≤100 normal", note: "Common in gardens and on vegetation. Causes gray mold on plants. Largely harmless indoors at normal infiltration counts." },
+      { name: "Nigrospora", aka: null, threshold: "≤100 normal", note: "Found on dead grass and plant debris. Seasonal spore release. Low concern at typical outdoor infiltration levels." },
+      { name: "Curvularia", aka: null, threshold: "≤100 normal", note: "Soil and plant pathogen spores. Tropical origin but now distributed globally. Allergen for sensitized people." },
+      { name: "Bipolaris", aka: null, threshold: "≤100 normal", note: "Plant pathogen on grasses and grains. Outdoor source. Rarely elevated indoors unless nearby grain storage exists." },
+      { name: "Stemphylium", aka: null, threshold: "≤100 normal", note: "Found on dead herbaceous plants. Seasonal release. Allergen in agricultural regions." },
+      { name: "Pithomyces", aka: null, threshold: "≤100 normal", note: "Commonly found on dead grass litter. Two types (I and II) analyzed. Outdoor allergen." },
+      { name: "Torula", aka: null, threshold: "≤100 normal", note: "Found on dead plant material and decaying wood. Outdoor source. Small dark spores." },
     ],
   },
   {
-    icon: "🌰",
-    title: "Basidiospores",
-    count: "25+ types",
-    items: [
-      "Outdoor fungal spores",
-      "Wood decay indicators",
-      "Mushroom-related spores",
-      "Environmental spores",
-      "Allergy triggers",
+    id: "allergens",
+    label: "Allergens",
+    shortLabel: "Allergens",
+    summary: "Pollen, dander, and biological particles that trigger immune responses. These are often the explanation for unexplained sneezing, itchy eyes, and congestion inside the home.",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+      </svg>
+    ),
+    accentClass: "text-amber-600",
+    borderClass: "border-l-amber-400",
+    species: [
+      { name: "Pine Pollen", aka: null, threshold: "Varies seasonally", note: "Large, winged pollen visible to the naked eye. Extremely abundant in spring. Low allergenic compared to grass pollen but present in high volumes." },
+      { name: "Grass Pollen", aka: null, threshold: "Varies seasonally", note: "One of the most common allergy triggers. Peak season May–July. Major contributor to hay fever symptoms." },
+      { name: "General Pollen", aka: "Mixed Types", threshold: "Varies seasonally", note: "Mixed pollen not identified to specific type. Broad allergen category. Used when pollen type cannot be definitively classified." },
+      { name: "Solid Brown Pollen", aka: null, threshold: "Varies seasonally", note: "Dense pollen type from various tree and weed species. Identified by morphology when specific species cannot be confirmed." },
+      { name: "Translucent Pollen", aka: null, threshold: "Varies seasonally", note: "Clear or lightly pigmented pollen varieties. Includes some tree pollens. Allergenicity varies by source species." },
+      { name: "Animal Dander", aka: "Pet Dander", threshold: "≤100 normal", note: "Microscopic skin flakes from cats, dogs, and other animals. Major indoor allergen. Persists in HVAC systems long after pet removal." },
+      { name: "Bird Dander", aka: null, threshold: "≤50 normal", note: "From pet birds or wild bird entry. Highly allergenic protein particles. Persistent in air and filter material." },
+      { name: "Dust Mites", aka: null, threshold: "≤50 normal", note: "Microscopic arachnids living in bedding, carpets, and soft furnishings. Their fecal particles are potent allergens. Thrive above 50% relative humidity." },
+      { name: "Smut", aka: "Plant Disease Spores", threshold: "≤100 normal", note: "Spores from smut fungi affecting cereal crops and grasses. Fuzzy yellow variant detectable. Allergen in agricultural regions." },
+      { name: "Rust", aka: "Urediniospores", threshold: "≤100 normal", note: "Spores from rust fungi that infect plants. Bright orange-brown spores. Seasonal, associated with infected host plants nearby." },
     ],
   },
   {
-    icon: "🌸",
-    title: "Pollen Types",
-    count: "5+ categories",
-    items: [
-      "General pollen",
-      "Pine pollen",
-      "Tree pollen variants",
-      "Seasonal allergens",
-      "Grass and weed pollen",
+    id: "airborne-particles",
+    label: "Airborne Particles",
+    shortLabel: "Particles",
+    summary: "Non-biological particulate matter that impacts lung health. Unlike biological particles, these don't reproduce — but they accumulate and the smaller they are, the deeper they penetrate your respiratory system.",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+      </svg>
+    ),
+    accentClass: "text-purple-600",
+    borderClass: "border-l-purple-500",
+    species: [
+      { name: "PM2.5", aka: "Fine Particulate Matter", threshold: "≤100 per field", note: "Particles 2.5 microns or smaller. These penetrate deep into lung tissue and can enter the bloodstream. Linked to cardiovascular disease with long-term exposure." },
+      { name: "PM2.5–10", aka: "Coarse Particles", threshold: "≤200 per field", note: "Inhalable particles between 2.5 and 10 microns. Lodge in the upper respiratory system. Many fungal spores fall in this range." },
+      { name: "PM10+", aka: "Large Particles", threshold: "Filtered naturally", note: "Larger particles typically filtered by your nose and throat. Includes pollen, dander, and coarse dust. Less dangerous but contributes to surface contamination." },
+      { name: "Dust / Soil", aka: null, threshold: "≤200 normal", note: "Mineral and organic particles tracked in from outdoors. High counts suggest filter bypass or inadequate filtration. Harmless in low quantities." },
+      { name: "Fibers", aka: "Textile Fibers", threshold: "≤150 normal", note: "From clothing, carpets, and soft furnishings. Elevated counts can indicate heavy textile shedding or HVAC bypass. Respiratory irritant in high concentrations." },
+      { name: "Carbon Dust", aka: null, threshold: "≤100 normal", note: "Combustion byproduct from candles, fireplaces, gas appliances, or outdoor traffic. Elevated levels indicate inadequate ventilation or nearby combustion sources." },
+      { name: "Carbon Clusters", aka: null, threshold: "≤50 normal", note: "Aggregated carbon particles from incomplete combustion. More concerning than individual carbon particles — suggest chronic exposure to combustion products." },
+      { name: "Insulation", aka: "Fiberglass Particles", threshold: "≤50 normal", note: "From disturbed HVAC insulation or building materials. Elevated counts may indicate damaged duct insulation or recent renovation activity." },
+      { name: "Talcum", aka: null, threshold: "≤30 normal", note: "Mineral dust from personal care products. Usually cosmetic source. Tracked through HVAC. Not a concern at low counts." },
     ],
   },
   {
-    icon: "🔬",
-    title: "Particulate Matter",
-    count: "3 size ranges",
-    items: [
-      "Fiber particles",
-      "Insulation particles",
-      "Carbon dust and clusters",
-      "Soil particles",
-      "PM2.5, PM2.5-10, PM10+",
+    id: "home-cleanliness",
+    label: "Home Cleanliness Indicators",
+    shortLabel: "Cleanliness",
+    summary: "Particles that reflect human occupancy, housekeeping habits, and general indoor conditions. These help calibrate the rest of your results — a very clean home shows lower counts across all categories.",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+    ),
+    accentClass: "text-rose-600",
+    borderClass: "border-l-rose-400",
+    species: [
+      { name: "Skin Cells", aka: "Human Skin Fragment", threshold: "≤100 normal", note: "We shed millions of skin cells daily. These are the primary food source for dust mites. Elevated counts are expected in occupied homes — context matters." },
+      { name: "Small Skin Fragment", aka: null, threshold: "≤100 normal", note: "Microscopic skin particles smaller than the main fragment category. Contribute to overall biological load and dust mite food source." },
+      { name: "Textile Fibers", aka: "Fabric Fragments", threshold: "≤100 normal", note: "From clothing, bedding, and soft furnishings. Higher counts indicate more textile use or shedding. Normal in all occupied homes." },
+      { name: "Dust / Debris", aka: "General Debris", threshold: "≤100 normal", note: "Mixed fine debris from normal household activity. A baseline cleanliness marker. Low counts indicate effective housekeeping and good filter performance." },
+      { name: "Insect Scales", aka: "Moth and Butterfly Scales", threshold: "≤20 normal", note: "Wing scales from moths and butterflies entering the home. Usually seasonal. Not a health concern but indicates open-window infiltration." },
+      { name: "Insect Parts", aka: "Appendages and Fragments", threshold: "≤20 normal", note: "General insect fragments including legs, antennae, and wing pieces. Elevated counts may indicate a pest presence. Significant allergen source." },
+      { name: "Insect Appendage", aka: null, threshold: "≤20 normal", note: "Specific insect body parts — legs, antennae. More specific than general insect parts. Used to flag potential pest activity in the home." },
+      { name: "Myxomycete", aka: "Slime Mold Spores", threshold: "≤50 normal", note: "Spores from slime molds common on decaying wood and plant litter. Not a true mold. Outdoor source. Low concern." },
     ],
   },
   {
-    icon: "🐾",
-    title: "Biological Fragments",
-    count: "All sources",
-    items: [
-      "Pet dander (cats, dogs, birds)",
-      "Insect parts and scales",
-      "Human skin cells",
-      "Animal skin fragments",
-      "Allergen sources",
+    id: "specialty",
+    label: "Specialty and Rare Types",
+    shortLabel: "Specialty",
+    summary: "Less common organisms and structural fragments that appear in specific circumstances. These are included in every analysis — finding them or not finding them is equally informative.",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+      </svg>
+    ),
+    accentClass: "text-gray-600",
+    borderClass: "border-l-gray-400",
+    species: [
+      { name: "Aspergillus / Penicillium", aka: "Asp/Pen", threshold: "≤200 normal", note: "A combined category because these two molds are often indistinguishable under standard microscopy. Common indoor molds. Elevated counts may indicate indoor sources. Some species produce mycotoxins." },
+      { name: "Wallemia", aka: null, threshold: "≤50 normal", note: "Xerophilic (dry-loving) mold. Unique because it can grow in low-moisture conditions. Found in stored foods and low-humidity materials." },
+      { name: "Oidium", aka: "Powdery Mildew", threshold: "≤50 normal", note: "Plant pathogen producing white powdery growth on leaves. Spores are fragile and often undetected by culture tests. Our direct microscopy method captures them." },
+      { name: "Rhizopus", aka: null, threshold: "≤50 normal", note: "Bread mold. Grows rapidly on food and damp organic material. Elevated counts may indicate food storage or compost near the HVAC intake." },
+      { name: "Zygomycetes", aka: null, threshold: "≤50 normal", note: "Broad category of fast-growing molds including Rhizopus and Mucor. Found in soil and organic matter. Opportunistic in immunocompromised individuals." },
+      { name: "Ganoderma", aka: "Shelf Fungus Spores", threshold: "≤100 normal", note: "Spores from polypore bracket fungi (tree shelf mushrooms). Common where there are diseased or dead trees nearby. Wood decay indicator." },
+      { name: "Coprinus", aka: "Inky Cap Mushroom", threshold: "≤100 normal", note: "Spores from inky cap mushrooms. Common in composting organic matter. Outdoor source typically. Two types analyzed: regular and large dark." },
+      { name: "Fungal Fragments", aka: "Hyphal Elements", threshold: "Varies", note: "Broken pieces of mold structures. Not identified to species. Indicate mold growth somewhere in the home or HVAC system. Elevated counts warrant investigation even without a species spike." },
+      { name: "Mitospores", aka: "Asexual Spores", threshold: "Varies", note: "Non-specific spore category. Includes three-cell, four-cell, and eight-cell forms. Used when morphology doesn't allow species identification. Counted for total load assessment." },
+      { name: "Unidentified Spores", aka: null, threshold: "Low confidence", note: "Particles that appear biological but cannot be classified with confidence. Reported separately to maintain transparency about the limits of identification." },
     ],
   },
 ];
 
-const expandableSections = [
-  {
-    icon: "🍄",
-    title: "Mold & Fungal Spores (90+ Types)",
-    content: (
-      <div className="space-y-6">
-        <div>
-          <h4 className="text-cyan font-outfit font-bold text-lg mb-3">Toxic & Water-Damage Molds</h4>
-          <ul className="space-y-2 text-gray-300">
-            {[
-              "Stachybotrys (Black Mold) — all variants including clumps and conidiophores",
-              "Chaetomium — water damage indicator (regular and long variants)",
-              "Chartarum — related to Stachybotrys, toxic mold species",
-              "Mature Chartarum — advanced growth stage",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-2"><span className="text-cyan mt-1">✓</span>{item}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h4 className="text-cyan font-outfit font-bold text-lg mb-3">Common Indoor Molds</h4>
-          <ul className="space-y-2 text-gray-300">
-            {[
-              "Aspergillus — multiple species and variants",
-              "Penicillium — multiple species and variants",
-              "Aspergillus/Penicillium — combined identification",
-              "Cladosporium — multiple types (cladosporioides, herbarum, sphaerospermum, two-cell, clumps)",
-              "Alternaria-like — Alternaria and similar species",
-              "Epicoccum — common indoor/outdoor mold",
-              "Fusarium — water intrusion indicator",
-              "Trichoderma clumps — green mold species",
-              "Ulocladium — water damage indicator",
-              "Wallemia — xerophilic (dry-loving) mold",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-2"><span className="text-cyan mt-1">✓</span>{item}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h4 className="text-cyan font-outfit font-bold text-lg mb-3">Specialty & Rare Mold Types</h4>
-          <ul className="space-y-2 text-gray-300">
-            {[
-              "Botrytis, Nigrospora, Curvularia, Bipolaris (Type 1 & 2)",
-              "Stemphylium, Pithomyces (Type I & II), Torula",
-              "Oidium (Powdery Mildew), Rhizopus, Zygomycetes",
-              "Scopulariopsis, Paecilomyces, Gliomastix",
-              "Pyricularia, Tetraploa, Spegazzinia (smooth and spiny)",
-              "Plus 30+ additional rare and specialty types",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-2"><span className="text-cyan mt-1">✓</span>{item}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h4 className="text-cyan font-outfit font-bold text-lg mb-3">Mold Structures & Fragments</h4>
-          <ul className="space-y-2 text-gray-300">
-            {[
-              "Fungal fragments and hyphal elements",
-              "Various clumps and aggregations",
-              "Conidiophores (spore-producing structures)",
-              "Mitospores (asexual spores)",
-              "Unidentified and low-confidence spores",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-2"><span className="text-cyan mt-1">✓</span>{item}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    ),
-  },
-  {
-    icon: "🌾",
-    title: "Ascospores (40+ Variants)",
-    content: (
-      <div className="space-y-6">
-        <p className="text-gray-300 leading-relaxed">These specialized spores indicate water damage, outdoor contamination, and environmental conditions. We identify and count over 40 different ascospore types:</p>
-        <div>
-          <h4 className="text-cyan font-outfit font-bold text-lg mb-3">General & Two-Cell Ascospores</h4>
-          <ul className="space-y-2 text-gray-300">
-            {[
-              "Ascospores — general, pigmented, and non-pigmented",
-              "Two-cell types — pigmented, non-pigmented, dark, white, big blue",
-              "Two-cell Hypocrea-like variants",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-2"><span className="text-cyan mt-1">✓</span>{item}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h4 className="text-cyan font-outfit font-bold text-lg mb-3">Multi-Cell & Specialized Types</h4>
-          <ul className="space-y-2 text-gray-300">
-            {[
-              "Three-cell, four-cell, eight-cell mitospores",
-              "Leptosphaeria-like (pigmented and non-pigmented)",
-              "Xylaria-like (long, medium, short, Type 2)",
-              "Pleospora, Sporomiella, Daldinia, Diatrype",
-              "Peziza, Ascocodinia, Cyclothyriella",
-              "Paraphaeospheria michotii, Phaeospheria annulata",
-              "Long, coiled, folded, and big blue multi-cell forms",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-2"><span className="text-cyan mt-1">✓</span>{item}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    ),
-  },
-  {
-    icon: "🌰",
-    title: "Basidiospores (25+ Types)",
-    content: (
-      <div className="space-y-6">
-        <p className="text-gray-300 leading-relaxed">Basidiospores come from mushrooms and other fungi — many are outdoor allergens or wood-decay indicators that end up in your home&apos;s air.</p>
-        <div>
-          <h4 className="text-cyan font-outfit font-bold text-lg mb-3">Common Mushroom & Wood Decay Spores</h4>
-          <ul className="space-y-2 text-gray-300">
-            {[
-              "Coprinus — inky cap mushrooms (regular and big dark)",
-              "Ganoderma — wood decay fungi, shelf mushrooms",
-              "Bolete — pored mushrooms",
-              "Russula/Lactarius — brittle gills and milk caps",
-              "Meruliporia/Serpula — dry rot fungi",
-              "Trametes/Trichaption biforme — turkey tail and relatives",
-              "Tomentella-like — crust fungi",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-2"><span className="text-cyan mt-1">✓</span>{item}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h4 className="text-cyan font-outfit font-bold text-lg mb-3">Morphological Types</h4>
-          <ul className="space-y-2 text-gray-300">
-            {[
-              "Allantoid, big clear, big elongated, big orange",
-              "Blue star types, lighter elongated, midsize ovals",
-              "Outdoor elliptoid, round egg clear, small dark blue",
-              "Teardrop shaped, unknown brown types",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-2"><span className="text-cyan mt-1">✓</span>{item}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    ),
-  },
-  {
-    icon: "🌸",
-    title: "Pollen & Allergens",
-    content: (
-      <div className="space-y-6">
-        <p className="text-gray-300 leading-relaxed">We identify and quantify multiple pollen types that can trigger allergies — critical for understanding why you feel worse at certain times of year.</p>
-        <ul className="space-y-2 text-gray-300">
-          {[
-            "General pollen — mixed types",
-            "Pine pollen — large winged pollen",
-            "Pomegranate pollen — specific tree type",
-            "Solid brown pollen — dense pollen types",
-            "Translucent pollen — clear pollen varieties",
-            "Smut — plant disease spores (fuzzy yellow variant)",
-            "Rust — plant pathogen spores (Urediniospores)",
-            "Myxomycete — slime mold spores",
-          ].map((item) => (
-            <li key={item} className="flex items-start gap-2 list-none"><span className="text-cyan mt-1">✓</span>{item}</li>
-          ))}
-        </ul>
-        <div className="bg-navy-light rounded-xl p-5 border border-white/10">
-          <p className="text-gray-400 text-sm leading-relaxed"><strong className="text-white">Seasonal Tracking:</strong> Your HVAC filter captures pollen over weeks or months — giving you a much more complete seasonal allergen picture than a 10-minute air pump sample.</p>
-        </div>
-      </div>
-    ),
-  },
-  {
-    icon: "🔬",
-    title: "Particulate Matter & Non-Biological Particles",
-    content: (
-      <div className="space-y-6">
-        <p className="text-gray-300 leading-relaxed">Not all air quality issues come from living organisms. We test for various particulates across three critical size ranges.</p>
-        <div>
-          <h4 className="text-cyan font-outfit font-bold text-lg mb-3">PM2.5 — 2.5 Microns and Smaller</h4>
-          <p className="text-gray-400 text-sm mb-3">Ultra-fine particles that penetrate deep into your lungs and can enter the bloodstream. Most dangerous to long-term health.</p>
-        </div>
-        <div>
-          <h4 className="text-cyan font-outfit font-bold text-lg mb-3">PM2.5–10 — 2.5 to 10 Microns</h4>
-          <p className="text-gray-400 text-sm mb-3">Inhalable coarse particles that lodge in the upper respiratory system. Many fungal spores fall in this range.</p>
-        </div>
-        <div>
-          <h4 className="text-cyan font-outfit font-bold text-lg mb-3">PM10+ — Larger Particles</h4>
-          <p className="text-gray-400 text-sm mb-3">Typically filtered by nose and throat. Includes larger pollen, dander, fiber, and insulation particles.</p>
-        </div>
-        <div>
-          <h4 className="text-cyan font-outfit font-bold text-lg mb-3">Additional Particle Types</h4>
-          <ul className="space-y-2 text-gray-300">
-            {[
-              "Fiber — from clothing, carpets, and fabrics",
-              "Insulation — fiberglass and other insulation materials",
-              "Carbon dust and carbon clusters — combustion products",
-              "Soil particles — tracked in from outdoors",
-              "Talcum — personal care product residue",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-2"><span className="text-cyan mt-1">✓</span>{item}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    ),
-  },
-  {
-    icon: "🐾",
-    title: "Animal & Biological Fragments",
-    content: (
-      <div className="space-y-6">
-        <p className="text-gray-300 leading-relaxed">Common allergen sources from living creatures — often the hidden cause of unexplained symptoms.</p>
-        <div>
-          <h4 className="text-cyan font-outfit font-bold text-lg mb-3">Pet & Animal Allergens</h4>
-          <ul className="space-y-2 text-gray-300">
-            {[
-              "Animal skin fragment — pet dander (general)",
-              "Bird dander — from pet or wild birds",
-              "Skin fragment — human skin cells",
-              "Small skin fragment — microscopic skin particles",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-2"><span className="text-cyan mt-1">✓</span>{item}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h4 className="text-cyan font-outfit font-bold text-lg mb-3">Insect Debris</h4>
-          <ul className="space-y-2 text-gray-300">
-            {[
-              "Insect scales — from moths and butterflies",
-              "Insect appendages — legs, antennae, wings",
-              "Insect part — general insect fragments",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-2"><span className="text-cyan mt-1">✓</span>{item}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="bg-navy-light rounded-xl p-5 border border-white/10">
-          <p className="text-gray-400 text-sm leading-relaxed"><strong className="text-white">Why this matters:</strong> Animal dander and insect fragments are major allergen sources. Identifying these helps determine whether pets or pest activity are affecting your air quality — and guides the right next steps.</p>
-        </div>
-      </div>
-    ),
-  },
-  {
-    icon: "📏",
-    title: "Particle Size Analysis (3 Critical Ranges)",
-    content: (
-      <div className="space-y-6">
-        <p className="text-gray-300 leading-relaxed">We measure particles across three size ranges because size determines exactly how deeply they penetrate your respiratory system — and how much damage they can cause.</p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {[
-            { label: "PM2.5", sub: "≤ 2.5 microns", desc: "Penetrates deep into lungs. Can enter bloodstream. Linked to cardiovascular disease.", color: "border-coral" },
-            { label: "PM2.5–10", sub: "2.5–10 microns", desc: "Lodges in upper respiratory system. Causes throat and nose irritation. Many spores fall here.", color: "border-yellow-400" },
-            { label: "PM10+", sub: "10+ microns", desc: "Filtered by nose and throat. Causes eye and nose irritation. Includes larger pollen and dander.", color: "border-cyan" },
-          ].map((range) => (
-            <div key={range.label} className={`bg-navy-light rounded-xl p-5 border-l-4 ${range.color}`}>
-              <p className="text-white font-outfit font-bold text-xl mb-1">{range.label}</p>
-              <p className="text-gray-400 text-sm mb-3">{range.sub}</p>
-              <p className="text-gray-300 text-sm leading-relaxed">{range.desc}</p>
-            </div>
-          ))}
-        </div>
-        <div className="bg-navy-light rounded-xl p-5 border border-white/10">
-          <p className="text-gray-400 text-sm leading-relaxed"><strong className="text-white">Most services don&apos;t measure particle size at all.</strong> We measure all three ranges so you understand not just what&apos;s in your air — but how dangerous each particle is to your health.</p>
-        </div>
-      </div>
-    ),
-  },
-];
+// All species flattened for search
+const allSpecies = categories.flatMap((cat) =>
+  cat.species.map((sp) => ({ ...sp, categoryId: cat.id, categoryLabel: cat.shortLabel }))
+);
 
-function ExpandableSection({ icon, title, content }: { icon: string; title: string; content: React.ReactNode }) {
-  const [open, setOpen] = useState(false);
+// ─── SUBCOMPONENTS ────────────────────────────────────────────────────────────
+
+function SpeciesRow({ name, aka, threshold, note }: { name: string; aka: string | null; threshold: string; note: string }) {
   return (
-    <div className={`bg-navy-light rounded-2xl overflow-hidden border transition-all duration-300 ${open ? "border-cyan/30" : "border-white/5 hover:border-white/10"}`}>
+    <div className="py-4 border-b border-gray-100 last:border-0">
+      <div className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 mb-1.5">
+        <div className="sm:w-52 flex-shrink-0">
+          <p className="font-outfit font-semibold text-navy text-sm">{name}</p>
+          {aka && <p className="text-gray-400 text-xs">{aka}</p>}
+        </div>
+        <div className="flex-1">
+          <p className="text-gray-600 text-sm leading-relaxed">{note}</p>
+        </div>
+        <div className="sm:w-36 flex-shrink-0 text-right">
+          <span className="inline-block text-xs font-mono text-gray-400 bg-gray-50 px-2 py-1 rounded border border-gray-200">{threshold}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CategorySection({ cat, defaultOpen = false }: { cat: typeof categories[0]; defaultOpen?: boolean }) {
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <div className={`bg-white rounded-2xl border border-gray-200 overflow-hidden border-l-4 ${cat.borderClass}`}>
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between px-7 py-5 text-left group"
+        className="w-full flex items-center justify-between px-7 py-5 text-left hover:bg-gray-50 transition-colors"
       >
-        <span className="font-outfit font-bold text-white text-lg">
-          <span className="mr-3">{icon}</span>{title}
-        </span>
-        <span className={`text-cyan text-2xl font-light transition-transform duration-300 ${open ? "rotate-45" : ""}`}>+</span>
+        <div className="flex items-center gap-4">
+          <div className={`${cat.accentClass} p-2 bg-gray-50 rounded-lg border border-gray-100`}>
+            {cat.icon}
+          </div>
+          <div>
+            <p className="font-outfit font-bold text-navy text-base">{cat.label}</p>
+            <p className="text-gray-500 text-xs mt-0.5">{cat.species.length} organisms in this panel</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-4">
+          <span className="hidden sm:block text-xs text-gray-400 max-w-xs text-right leading-relaxed line-clamp-2">{cat.summary}</span>
+          <svg
+            className={`w-5 h-5 text-gray-400 transition-transform flex-shrink-0 ${open ? "rotate-180" : ""}`}
+            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
       </button>
       {open && (
-        <div className="px-7 pb-7 border-t border-white/10 pt-6">
-          {content}
+        <div className="border-t border-gray-100 px-7 pt-2 pb-4">
+          <p className="text-gray-500 text-sm leading-relaxed pt-3 pb-4 border-b border-gray-100 mb-2">{cat.summary}</p>
+          <div className="hidden sm:flex items-center gap-4 py-2 text-xs font-outfit font-semibold text-gray-400 uppercase tracking-wider border-b border-gray-100 mb-1">
+            <span className="w-52">Organism</span>
+            <span className="flex-1">What it means</span>
+            <span className="w-36 text-right">Normal threshold</span>
+          </div>
+          {cat.species.map((sp) => (
+            <SpeciesRow key={sp.name} {...sp} />
+          ))}
         </div>
       )}
     </div>
   );
 }
 
+// ─── MAIN PAGE ────────────────────────────────────────────────────────────────
+
 export default function WhatWeTestForPage() {
+  const [query, setQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  const searchResults = useMemo(() => {
+    if (!query.trim()) return [];
+    const q = query.toLowerCase();
+    return allSpecies.filter(
+      (sp) =>
+        sp.name.toLowerCase().includes(q) ||
+        (sp.aka && sp.aka.toLowerCase().includes(q)) ||
+        sp.note.toLowerCase().includes(q)
+    );
+  }, [query]);
+
+  const filteredCategories = activeCategory
+    ? categories.filter((c) => c.id === activeCategory)
+    : categories;
+
   return (
-    <>
-      {/* HERO */}
-      <section className="relative bg-navy pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan rounded-full opacity-[0.04] blur-[120px]" />
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <span className="text-cyan text-sm font-outfit font-medium tracking-widest uppercase mb-4 block">Test Your World</span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-outfit font-extrabold text-white mb-6">
-            182+ Things We <span className="text-gradient">Test For</span>
+    <div className="bg-[#F7FAFC] min-h-screen">
+      {/* ── HERO ── */}
+      <section className="bg-navy pt-28 pb-16 lg:pt-36 lg:pb-24">
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <div className="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full border border-cyan/20 bg-cyan/5">
+            <span className="text-cyan text-sm font-outfit font-medium tracking-wide uppercase">Complete Panel</span>
+          </div>
+          <h1 className="text-4xl lg:text-6xl font-outfit font-extrabold text-white mb-5 leading-tight">
+            182+ Things<br />We Test For
           </h1>
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto mb-10">
-            Your HVAC filter captures everything floating through your home. We identify every particle — mold, allergens, pollen, dander, and particulates — across 182+ different categories using AI-enhanced microscopy.
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+            Every organism in our panel. Every category explained. This is the reference library for your report — understand exactly what was found, what wasn&apos;t found, and what it all means.
           </p>
 
-          {/* Comparison stat */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 mb-10">
-            <div className="bg-navy-light border border-white/10 rounded-2xl px-10 py-6 min-w-[180px]">
-              <span className="block text-5xl font-outfit font-black text-gray-400 mb-2">36</span>
-              <span className="text-gray-500 text-sm font-medium">Types tested by typical competitors</span>
-            </div>
-            <span className="text-3xl font-outfit font-bold text-white opacity-40">VS</span>
-            <div className="bg-navy-light border border-cyan/40 rounded-2xl px-10 py-6 min-w-[180px] shadow-[0_0_30px_rgba(0,229,255,0.08)]">
-              <span className="block text-5xl font-outfit font-black text-cyan mb-2">182+</span>
-              <span className="text-gray-300 text-sm font-medium">Types tested by Test Your World</span>
-            </div>
+          {/* Stats */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto mb-12">
+            {[
+              { num: "182+", label: "Organisms analyzed" },
+              { num: "6", label: "Categories" },
+              { num: "36", label: "Typical competitor" },
+              { num: "5x", label: "More comprehensive" },
+            ].map(({ num, label }) => (
+              <div key={label} className="bg-navy-light border border-white/10 rounded-xl px-4 py-4">
+                <p className="text-2xl font-outfit font-black text-cyan">{num}</p>
+                <p className="text-gray-400 text-xs mt-1">{label}</p>
+              </div>
+            ))}
           </div>
 
-          <a
-            href="https://testyourworld.myshopify.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-cyan text-navy px-8 py-4 rounded-xl font-outfit font-bold text-lg hover:bg-cyan-dim transition-all hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(0,229,255,0.3)]"
-          >
-            Get Your Test Kit
-          </a>
+          {/* Search */}
+          <div className="max-w-xl mx-auto relative">
+            <div className="absolute left-4 top-1/2 -translate-y-1/2">
+              <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search by organism name — e.g. Cladosporium, dust mites, PM2.5"
+              className="w-full pl-12 pr-4 py-4 rounded-xl bg-white text-navy placeholder-gray-400 font-dm-sans text-sm border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyan/30 shadow-lg"
+            />
+            {query && (
+              <button
+                onClick={() => setQuery("")}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
+          </div>
         </div>
       </section>
 
-      {/* OVERVIEW GRID */}
-      <section className="py-20 lg:py-28 bg-[#F7FAFC]">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl lg:text-4xl font-outfit font-bold text-navy mb-4">Complete Testing Categories</h2>
-            <p className="text-gray-500 max-w-2xl mx-auto">While other services stop at 36 mold types, we analyze the full spectrum — because your air quality is affected by far more than just mold.</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((cat) => (
-              <div key={cat.title} className="bg-white rounded-2xl border border-gray-200 p-7 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-3xl">{cat.icon}</span>
-                  <div>
-                    <h3 className="font-outfit font-bold text-navy text-lg leading-tight">{cat.title}</h3>
-                    <span className="text-cyan text-sm font-semibold">{cat.count}</span>
+      {/* ── SEARCH RESULTS ── */}
+      {query && (
+        <div className="max-w-5xl mx-auto px-6 pt-8 pb-4">
+          <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+            <div className="px-7 py-4 border-b border-gray-100 flex items-center justify-between">
+              <p className="font-outfit font-semibold text-navy text-sm">
+                {searchResults.length} result{searchResults.length !== 1 ? "s" : ""} for &ldquo;{query}&rdquo;
+              </p>
+              <button onClick={() => setQuery("")} className="text-gray-400 hover:text-cyan text-sm transition-colors">Clear</button>
+            </div>
+            {searchResults.length === 0 ? (
+              <div className="px-7 py-10 text-center text-gray-400 text-sm">
+                No organisms found matching &ldquo;{query}&rdquo;. Try a different spelling or search by category below.
+              </div>
+            ) : (
+              <div className="divide-y divide-gray-100">
+                {searchResults.map((sp) => (
+                  <div key={`${sp.categoryId}-${sp.name}`} className="px-7 py-4">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <p className="font-outfit font-bold text-navy text-sm">{sp.name}</p>
+                          {sp.aka && <span className="text-gray-400 text-xs">· {sp.aka}</span>}
+                          <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full font-outfit">{sp.categoryLabel}</span>
+                        </div>
+                        <p className="text-gray-600 text-sm leading-relaxed">{sp.note}</p>
+                      </div>
+                      <div className="flex-shrink-0">
+                        <span className="text-xs font-mono text-gray-400 bg-gray-50 px-2 py-1 rounded border border-gray-200 whitespace-nowrap">{sp.threshold}</span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <ul className="space-y-2">
-                  {cat.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-gray-600 text-sm">
-                      <span className="text-cyan font-bold mt-0.5">✓</span>{item}
-                    </li>
-                  ))}
-                </ul>
+                ))}
               </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ── CATEGORY FILTER TABS ── */}
+      {!query && (
+        <div className="max-w-5xl mx-auto px-6 pt-10 pb-4">
+          <div className="flex items-center gap-2 flex-wrap">
+            <button
+              onClick={() => setActiveCategory(null)}
+              className={`px-4 py-2 rounded-lg text-sm font-outfit font-semibold transition-all ${
+                activeCategory === null ? "bg-navy text-white shadow-md" : "bg-white text-gray-500 border border-gray-200 hover:border-gray-300 hover:text-navy"
+              }`}
+            >
+              All Categories
+            </button>
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id === activeCategory ? null : cat.id)}
+                className={`px-4 py-2 rounded-lg text-sm font-outfit font-semibold transition-all ${
+                  activeCategory === cat.id ? "bg-navy text-white shadow-md" : "bg-white text-gray-500 border border-gray-200 hover:border-gray-300 hover:text-navy"
+                }`}
+              >
+                {cat.shortLabel}
+              </button>
             ))}
           </div>
         </div>
-      </section>
+      )}
 
-      {/* WHY IT MATTERS */}
-      <section className="py-20 lg:py-28 bg-navy">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl lg:text-4xl font-outfit font-bold text-white mb-4">Why Comprehensive Testing Matters</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">Other services only test for basic mold. But your air quality is affected by much more than a handful of mold species.</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: "🤧", title: "Allergies?", text: "You need to know about pollen, dander, skin fragments, and environmental spores — not just toxic molds." },
-              { icon: "🫁", title: "Respiratory Issues?", text: "Particle size matters. We measure all three critical ranges that affect your lungs differently." },
-              { icon: "🏠", title: "Water Damage?", text: "Specific indicator species like Chaetomium and Stachybotrys confirm moisture problems before they become expensive." },
-              { icon: "📊", title: "Complete Picture?", text: "182+ types gives you the full story of your air — not just part of it." },
-            ].map((benefit) => (
-              <div key={benefit.title} className="bg-navy-light rounded-2xl p-6 border border-white/10 text-center hover:border-cyan/20 hover:-translate-y-1 transition-all duration-300">
-                <div className="text-4xl mb-4">{benefit.icon}</div>
-                <h4 className="font-outfit font-bold text-white text-lg mb-2">{benefit.title}</h4>
-                <p className="text-gray-400 text-sm leading-relaxed">{benefit.text}</p>
-              </div>
-            ))}
-          </div>
+      {/* ── CATEGORY ACCORDION ── */}
+      {!query && (
+        <div className="max-w-5xl mx-auto px-6 py-6 space-y-4">
+          {filteredCategories.map((cat, i) => (
+            <CategorySection key={cat.id} cat={cat} defaultOpen={i === 0} />
+          ))}
         </div>
-      </section>
+      )}
 
-      {/* EXPANDABLE FULL LIST */}
-      <section className="py-20 lg:py-28 bg-[#F7FAFC]">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl lg:text-4xl font-outfit font-bold text-navy mb-4">Everything We Test For — Complete List</h2>
-            <p className="text-gray-500">Click any category to expand the full list.</p>
-          </div>
-          <div className="space-y-3">
-            {expandableSections.map((section) => (
-              <ExpandableSection key={section.title} icon={section.icon} title={section.title} content={section.content} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SCIENCE / METHOD */}
-      <section className="py-20 lg:py-28 bg-navy">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl lg:text-4xl font-outfit font-bold text-white mb-4">How We Identify All 182+ Types</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">Advanced non-viable direct microscopy — the same method used by professional industrial hygienists, enhanced by AI-powered analysis.</p>
-          </div>
-          <div className="bg-navy-light rounded-2xl p-8 border border-white/10 mb-8">
-            <h3 className="text-cyan font-outfit font-bold text-2xl mb-4">Non-Viable Testing Advantage</h3>
-            <p className="text-gray-300 leading-relaxed mb-4">
-              Our direct microscopy approach detects <strong className="text-white">all airborne spores</strong> — viable, dormant, fragile, and dead. Culture testing (used by most home kits) only shows what can grow on agar plates, missing critical organisms like powdery mildew and fragile spores like Stachybotrys that collapse before they can be cultured.
+      {/* ── SCOPE CALLOUT ── */}
+      {!query && (
+        <div className="max-w-5xl mx-auto px-6 pb-8">
+          <div className="bg-navy-light border border-white/10 rounded-2xl px-8 py-6">
+            <p className="text-cyan text-xs font-outfit font-semibold uppercase tracking-widest mb-2">Why we show you everything</p>
+            <p className="text-white font-outfit font-bold text-lg mb-2">
+              The scope of a test is as important as the results.
             </p>
-            <p className="text-gray-300 leading-relaxed">
-              Your HVAC filter passively collects particles over weeks or months — giving a complete long-term picture of your home&apos;s air. For professional inspections requiring a point-in-time air sample, we also offer{" "}
-              <a href="/home-inspector" className="text-cyan hover:underline">air cassette testing</a>{" "}
-              with QFF-calculated spores/m³ results.
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Our report shows you every organism in our panel — not just what was found. A confirmed negative is proof of thoroughness, not filler. When you see Stachybotrys at zero, you know it was looked for. That&apos;s the difference between knowing and guessing.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                title: "AI-Enhanced Accuracy",
-                items: ["182+ contaminant identification", "Species-level classification", "Automated counting accuracy", "Confidence scoring systems", "Advanced microscopy analysis"],
-              },
-              {
-                title: "Standardized Reporting",
-                items: ["Spores per cubic meter (spores/m³)", "Particle size distribution", "Comparison to IAQ standards", "Confidence levels provided", "Plain-English explanations"],
-              },
-              {
-                title: "Real-World Exposure",
-                items: ["Measures actual exposure risk", "Detects dormant spores", "Captures fragile organisms", "No culture bias", "Complete spore spectrum"],
-              },
-            ].map((card) => (
-              <div key={card.title} className="bg-navy rounded-xl p-6 border border-white/10">
-                <h4 className="text-cyan font-outfit font-bold text-lg mb-4">{card.title}</h4>
-                <ul className="space-y-2">
-                  {card.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-gray-300 text-sm">
-                      <span className="text-cyan mt-0.5">✓</span>{item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
         </div>
-      </section>
+      )}
 
-      {/* CTA */}
-      <section className="py-20 lg:py-28 bg-[#F7FAFC]">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl lg:text-4xl font-outfit font-bold text-navy mb-4">Ready to Know What&apos;s in Your Air?</h2>
-          <p className="text-gray-500 text-lg mb-10">
-            $69. No appointments. No strangers in your home. Mail your filter cut or attach an AirPatch and get results in 5–7 business days.
+      {/* ── METHODOLOGY NOTE ── */}
+      <div className="max-w-5xl mx-auto px-6 pb-8">
+        <div className="bg-white border border-gray-200 rounded-2xl px-8 py-6">
+          <p className="text-xs font-outfit font-semibold text-gray-400 uppercase tracking-widest mb-3">About Normal Thresholds</p>
+          <p className="text-gray-600 text-sm leading-relaxed mb-3">
+            Thresholds shown reflect our QFF (Quantitative Filter Forensics) methodology. Because we analyze HVAC filters that collect particles over weeks or months — not a point-in-time air sample — our thresholds are calibrated to account for normal outdoor infiltration. Finding a small number of even toxic mold species is expected and does not indicate an indoor problem.
+          </p>
+          <p className="text-gray-500 text-sm">
+            For questions about your specific results, email{" "}
+            <a href="mailto:support@testyourworld.com" className="text-cyan hover:underline">support@testyourworld.com</a>.
+          </p>
+        </div>
+      </div>
+
+      {/* ── CTA ── */}
+      <div className="max-w-5xl mx-auto px-6 pb-20">
+        <div className="bg-navy rounded-2xl px-8 py-10 text-center">
+          <p className="text-gray-400 text-sm font-outfit font-semibold uppercase tracking-widest mb-3">Ready to see your own results?</p>
+          <h2 className="text-white font-outfit font-extrabold text-3xl mb-3">
+            Find out what&apos;s actually in your air.
+          </h2>
+          <p className="text-gray-400 mb-8 max-w-lg mx-auto">
+            $69. No appointments. No strangers in your home. Results in 5–7 days.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -545,17 +425,17 @@ export default function WhatWeTestForPage() {
               rel="noopener noreferrer"
               className="bg-cyan text-navy px-8 py-4 rounded-xl font-outfit font-bold text-lg hover:bg-cyan-dim transition-all hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(0,229,255,0.3)]"
             >
-              Get Your Test Kit
+              Get Your Test Kit — $69
             </a>
             <Link
               href="/sample-report"
-              className="border-2 border-navy text-navy px-8 py-4 rounded-xl font-outfit font-bold text-lg hover:bg-navy hover:text-white transition-all hover:-translate-y-1"
+              className="border-2 border-white/20 text-white px-8 py-4 rounded-xl font-outfit font-bold text-lg hover:border-cyan hover:text-cyan transition-all"
             >
-              View Sample Report
+              See a Sample Report
             </Link>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </div>
   );
 }
