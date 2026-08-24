@@ -161,10 +161,11 @@ export default function HomePage() {
           <div className="hidden lg:block">
             <Image
               src="/images/patchonfilter.jpeg"
-              alt="A used HVAC filter ready for whole-filter lab testing"
-              width={560}
-              height={420}
-              className="rounded-2xl shadow-2xl object-cover"
+              alt="What's really in your air? A man holds up a heavily soiled HVAC filter. The panel lists mold spores, dust and allergens, airborne particles, environmental debris, and fibers and pollutants — and a card reading: the Test Your World whole home checkup is fast, easy, lab analyzed, with results in 48 hours."
+              width={1536}
+              height={1024}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="rounded-2xl shadow-2xl w-full h-auto"
               priority
             />
           </div>
