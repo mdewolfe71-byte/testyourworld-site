@@ -43,7 +43,7 @@ const whyCards = [
   },
   {
     title: "Same Price US or Canada",
-    text: "$69 USD or CAD. No exchange rate games. No surprises.",
+    text: "$99 USD or CAD. No exchange rate games. No surprises.",
     accent: "Fair is fair",
     svg: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>

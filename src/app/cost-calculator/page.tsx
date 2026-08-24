@@ -43,7 +43,7 @@ export default function CostCalculatorPage() {
             Why Estimate the Cost?
           </h2>
           <p className="text-gray-400 leading-relaxed mb-8">
-            Most homeowners don&apos;t realize that poor indoor air quality silently drains thousands from their wallet — through higher energy bills, avoidable health costs, and reduced home value. A $69 test kit can identify what&apos;s in your air before it costs you thousands.
+            Most homeowners don&apos;t realize that poor indoor air quality silently drains thousands from their wallet — through higher energy bills, avoidable health costs, and reduced home value. A $99 test kit can identify what&apos;s in your air before it costs you thousands.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
             {[
@@ -76,7 +76,7 @@ export default function CostCalculatorPage() {
             rel="noopener noreferrer"
             className="inline-block bg-cyan text-navy px-8 py-4 rounded-lg font-outfit font-bold text-lg hover:bg-cyan-dim transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,229,255,0.3)]"
           >
-            Get Your Kit — $69
+            Get Your Kit — $99
           </a>
         </div>
       </div>

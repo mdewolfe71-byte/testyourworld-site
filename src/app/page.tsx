@@ -6,47 +6,46 @@ import WhyCards from "@/components/WhyCards";
 export const metadata: Metadata = {
   title: "Test Your World — Know What You're Breathing",
   description:
-    "Your HVAC filter captures what's floating in your air. We test it for mold, allergens, and mystery particles. $69 USD or CAD. Results in 5–7 days.",
+    "Your HVAC filter captures what's floating in your air. Mail it to us and we test the whole thing for mold, allergens, and mystery particles. From $99. Results in 48 hours.",
 };
 
 const tests = [
   {
-    badge: "MOST VERSATILE",
+    badge: "MOST POPULAR",
     badgeColor: "bg-coral",
-    name: "AirPatch",
-    tagline: "Stick it. Wait. Mail it. Done.",
-    quote: '"I want answers, not a craft project."',
-    image: "/images/patchonfilter.jpeg",
-    price: "$69",
-    shopUrl: "https://testyourworld.myshopify.com/products/airpatch-kit-whole-home-air-quality-test",
-    linkHref: "/airpatch",
+    name: "Whole Filter Testing — Basic",
+    tagline: "Pull it. Box it. Mail it. Done.",
+    quote: '"Just tell me if my air is okay."',
+    image: "/images/types of filters.jpeg",
+    price: "$99",
+    shopUrl: "https://testyourworld.myshopify.com/products/direct-filter-test-no-kit-needed-20-off",
+    linkHref: "/whole-filter-testing",
     features: [
-      '4"×4" patch works anywhere air moves',
-      "Test whole home via HVAC filter",
-      "Test a single room — basement, nursery, bedroom",
-      "Test your air purifier — is it actually working?",
-      "Test DIY setups like box fans or Corsi-Rosenthal boxes",
-      "7-day sampling period",
-      "Results in 5–7 days",
+      "Send us your used HVAC filter — 30+ days old",
+      "No cutting, no tools, no assembly",
+      "Whole-home analysis from the entire filter",
+      "Overall air quality score",
+      "Risk level by category, in plain English",
+      "Results in 48 hours",
     ],
   },
   {
-    badge: "HANDS-ON",
+    badge: "MOST DETAIL",
     badgeColor: "bg-purple-500",
-    name: "FilterCut",
-    tagline: "For the hands-on homeowner.",
-    quote: '"That dusty filter is about to become useful."',
-    image: "/images/filtercut.png",
-    price: "$69",
-    shopUrl: "https://testyourworld.myshopify.com/products/direct-filter-test-no-kit-needed-20-off",
-    linkHref: null,
+    name: "Whole Filter Testing — Advanced",
+    tagline: "Every organism. By name.",
+    quote: '"I want to know everything."',
+    image: "/images/Wolehome.png.webp",
+    price: "$149",
+    shopUrl: "https://testyourworld.myshopify.com",
+    linkHref: "/whole-filter-testing",
     features: [
-      "Uses your existing used filter — 30+ days old",
-      "Heavy-duty filter shears included — cuts wire mesh",
-      "Nitrile gloves included",
-      "Months of accumulated data in one sample",
-      "Whole home analysis from one cut",
-      "Results in 5–7 days",
+      "Same filter, same lab — full forensic depth",
+      "Every organism identified by name",
+      "Exact counts against normal thresholds",
+      "182+ organisms and particulates analyzed",
+      "Results in spores/m³ — the EPA standard",
+      "Results in 48 hours",
     ],
   },
   {
@@ -56,7 +55,7 @@ const tests = [
     tagline: "Swab it. Send it. Stop guessing.",
     quote: '"Is that mold or a committed dust bunny?"',
     image: "/images/rs=h_175,m (1).webp",
-    price: "$32",
+    price: "$49",
     shopUrl: "https://testyourworld.myshopify.com/products/surface-swab-mold-test-report",
     linkHref: "/swab-testing",
     features: [
@@ -64,7 +63,7 @@ const tests = [
       "Walls, ceilings, basements, bathrooms",
       "Window sills, under sinks, behind furniture",
       "Identifies exact mold species",
-      "Results in 3–5 days",
+      "Results in 48 hours",
     ],
   },
   {
@@ -81,7 +80,7 @@ const tests = [
       "Air pump cassette sampling — Bio-Pump compatible",
       "QFF-calculated spores/m³ results",
       "182+ particle types analyzed",
-      "5–7 day turnaround",
+      "Next business day turnaround",
       "Branded client reports via TYW portal",
       "Partner dashboard for order tracking",
     ],
@@ -90,12 +89,16 @@ const tests = [
 
 const faqs = [
   {
-    q: "What's the difference between AirPatch and FilterCut?",
-    a: 'AirPatch uses a fresh 4"×4" sampling patch placed on your filter or in a room for 7 days, giving precise data about current air quality. FilterCut uses your existing used filter (30+ days old) — you cut a sample and send it back, giving months of accumulated data. Same lab, same science, different starting points.',
+    q: "What's the difference between Basic and Advanced?",
+    a: "Same filter, same lab work — the difference is how much detail you get back. Basic gives you an overall air quality score, risk levels by category, and a plain-English summary. Advanced identifies every organism by name with exact counts measured against normal thresholds. You can start with Basic and upgrade the same sample later.",
   },
   {
-    q: "Can I test if my air purifier is actually working?",
-    a: "Yes. Stick an AirPatch on the output side of your purifier. If the air coming out is clean, money well spent. If not — now you know.",
+    q: "Do I have to cut my filter?",
+    a: "No. Send us the whole filter — that's the point. No shears, no gloves, no craft project. Pull the filter out, put it in the box, drop it in the mail.",
+  },
+  {
+    q: "How old does my filter need to be?",
+    a: "At least 30 days in your system. The longer it's been in place, the more of your home's air it has sampled. A brand-new filter hasn't collected enough to analyze yet.",
   },
   {
     q: "What will the test show me?",
@@ -103,11 +106,11 @@ const faqs = [
   },
   {
     q: "How long does it take to get results?",
-    a: "5–7 business days after we receive your sample. You'll get an email when your report is ready in the Client Portal.",
+    a: "48 hours after we receive your sample. You'll get an email when your report is ready in the Client Portal.",
   },
   {
     q: "Why is it the same price in US and Canada?",
-    a: "Because we operate accredited labs on both sides of the border. No middlemen, no currency markups. $69 is $69 wherever you are.",
+    a: "Because we operate accredited labs on both sides of the border. No middlemen, no currency markups. $99 is $99 wherever you are.",
   },
   {
     q: "What if my results show a problem?",
@@ -145,7 +148,7 @@ export default function HomePage() {
                 rel="noopener noreferrer"
                 className="bg-cyan text-navy px-8 py-4 rounded-lg font-outfit font-bold text-lg hover:bg-cyan-dim transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,229,255,0.3)]"
               >
-                Get Your Kit — $69
+                Get Your Kit — $99
               </a>
               <Link
                 href="/sample-report"
@@ -158,7 +161,7 @@ export default function HomePage() {
           <div className="hidden lg:block">
             <Image
               src="/images/patchonfilter.jpeg"
-              alt="AirPatch on a real HVAC filter"
+              alt="A used HVAC filter ready for whole-filter lab testing"
               width={560}
               height={420}
               className="rounded-2xl shadow-2xl object-cover"
@@ -193,9 +196,9 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { step: "1", title: "Get Your Kit", desc: "Pick your test. We ship it to your door.", sub: "A few days and it's there." },
-              { step: "2", title: "Collect Sample", desc: "Attach a patch, cut your filter, or swab a spot.", sub: "Pick your adventure." },
+              { step: "2", title: "Collect Sample", desc: "Box up your used filter, or swab a suspicious spot.", sub: "No tools required." },
               { step: "3", title: "Mail It Back", desc: "Drop in any mailbox. Prepaid shipping included.", sub: "We even handle the stamps." },
-              { step: "4", title: "Get Results", desc: "Report hits your inbox in 5–7 days.", sub: "In English. Not scientist." },
+              { step: "4", title: "Get Results", desc: "Report hits your inbox in 48 hours.", sub: "In English. Not scientist." },
             ].map(({ step, title, desc, sub }) => (
               <div key={step} className="text-center">
                 <div className="w-16 h-16 rounded-full bg-navy text-cyan flex items-center justify-center text-2xl font-outfit font-bold mx-auto mb-5 shadow-lg">
@@ -325,8 +328,8 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
             { stat: "182+", label: "Organism Types Identified", sub: "Mold. Allergens. Particles. All of it." },
-            { stat: "$69", label: "USD or CAD", sub: "Same price both sides of the border." },
-            { stat: "5–7", label: "Days to Results", sub: "Faster than your last Temu order." },
+            { stat: "$99", label: "USD or CAD", sub: "Same price both sides of the border." },
+            { stat: "48", label: "Hours to Results", sub: "Faster than your last Temu order." },
             { stat: "0", label: "Strangers in Your Home", sub: "Introverts, rejoice." },
           ].map(({ stat, label, sub }) => (
             <div key={label}>
@@ -432,7 +435,7 @@ export default function HomePage() {
               rel="noopener noreferrer"
               className="border border-white/20 text-white px-8 py-4 rounded-lg font-outfit font-semibold text-lg hover:border-cyan hover:text-cyan transition-all text-center"
             >
-              Skip to Kit — $69
+              Skip to Kit — $99
             </a>
           </div>
         </div>
@@ -454,7 +457,7 @@ export default function HomePage() {
             rel="noopener noreferrer"
             className="inline-block bg-cyan text-navy px-10 py-4 rounded-lg font-outfit font-bold text-lg hover:bg-cyan-dim transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,229,255,0.3)]"
           >
-            Shop Now — $69
+            Shop Now — $99
           </a>
         </div>
       </section>

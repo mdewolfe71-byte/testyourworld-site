@@ -416,7 +416,7 @@ export default function WhatWeTestForPage() {
             Find out what&apos;s actually in your air.
           </h2>
           <p className="text-gray-400 mb-8 max-w-lg mx-auto">
-            $69. No appointments. No strangers in your home. Results in 5–7 days.
+            From $99. No appointments. No strangers in your home. Results in 48 hours.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -425,7 +425,7 @@ export default function WhatWeTestForPage() {
               rel="noopener noreferrer"
               className="bg-cyan text-navy px-8 py-4 rounded-xl font-outfit font-bold text-lg hover:bg-cyan-dim transition-all hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(0,229,255,0.3)]"
             >
-              Get Your Test Kit — $69
+              Get Your Test Kit — $99
             </a>
             <Link
               href="/sample-report"
