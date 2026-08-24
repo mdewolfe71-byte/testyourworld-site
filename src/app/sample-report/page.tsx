@@ -509,9 +509,9 @@ export default function SampleReportPage() {
             rel="noopener noreferrer"
             className="inline-block bg-cyan text-navy px-10 py-4 rounded-xl font-outfit font-bold text-lg hover:bg-cyan-dim transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,229,255,0.3)]"
           >
-            Get Your Report — $69
+            Get Your Report — $99
           </a>
-          <p className="text-gray-400 text-sm mt-3">Results in 5–7 days. No strangers in your home.</p>
+          <p className="text-gray-400 text-sm mt-3">Results in 48 hours. No strangers in your home.</p>
         </div>
       </div>
     </div>

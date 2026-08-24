@@ -10,12 +10,12 @@ export const metadata: Metadata = {
     template: "%s | Test Your World",
   },
   description:
-    "Your HVAC filter captures what's floating in your air. We test it and tell you exactly what you're breathing. Mold testing made simple — $69, no strangers in your home.",
+    "Your HVAC filter captures what's floating in your air. Mail it to us and we test the whole thing. Mold testing made simple — from $99, no strangers in your home.",
   metadataBase: new URL("https://www.testyourworld.com"),
   openGraph: {
     title: "Test Your World — Know What You're Breathing",
     description:
-      "Your filter knows what's in your air. We test it. Mold species identification, AI-powered analysis, results in 5–7 days. $69 USD or CAD.",
+      "Your filter knows what's in your air. We test it. Mold species identification, AI-powered analysis, results in 48 hours. From $99 USD or CAD.",
     url: "https://www.testyourworld.com",
     siteName: "Test Your World",
     locale: "en_US",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Test Your World — Know What You're Breathing",
     description:
-      "Your filter knows what's in your air. We test it. $69. No appointments. No strangers.",
+      "Your filter knows what's in your air. We test it. From $99. No appointments. No strangers.",
   },
   icons: {
     icon: [

@@ -19,7 +19,7 @@ const comparison = [
   { feature: "Equipment Needed", tyw: "Scissors only", pump: "Air pump + cassettes", petri: "Petri dishes" },
   { feature: "Detects Dead Spores", tyw: "✓ Yes", pump: "✓ Yes", petri: "✗ No (only viable)" },
   { feature: "Lab Analysis", tyw: "Accredited microscopy", pump: "Accredited microscopy", petri: "Visual ID only" },
-  { feature: "Typical Price", tyw: "$49–79", pump: "$150–300+", petri: "$30–50" },
+  { feature: "Typical Price", tyw: "$49–149", pump: "$150–300+", petri: "$30–50" },
 ];
 
 const faqs = [
@@ -33,15 +33,15 @@ const faqs = [
   },
   {
     q: "What if I don't have HVAC?",
-    a: "The AirPatch works anywhere air moves. Place it in a room near a window, fan, or natural airflow path. It works in any space — with or without HVAC. You can also use our Surface Swab if you're testing a specific spot.",
+    a: "Whole Filter Testing needs a forced-air system — that filter is the sample. If your home doesn't have one, our Surface Swab test lets you sample any surface you're suspicious about instead.",
   },
   {
     q: "Can I test a specific room?",
-    a: "Yes! With the AirPatch, place it in any room you want to test — a basement, bedroom, nursery, or any area of concern. For whole-home testing, attach it to your HVAC filter.",
+    a: "Whole Filter Testing is whole-home by design — every room's air passes through that one filter, so the result covers your whole house rather than a single space. If you want to check one specific spot, the Surface Swab test is the right tool.",
   },
   {
-    q: "Is the sampling patch safe?",
-    a: "Completely. The sampling patch is a passive collector — it doesn't emit anything. It simply captures particles that are already floating through your air. It's safe for homes with kids, pets, and people with sensitivities.",
+    q: "Is any of this unsafe to handle?",
+    a: "No. You're handling the same filter you'd normally pull out and throw away. Slide it into the box, seal it, and mail it. Nothing is added to your home and nothing is left behind — it's safe for homes with kids, pets, and people with sensitivities.",
   },
   {
     q: "What do I do with the results?",
@@ -150,7 +150,7 @@ export default function LearnMorePage() {
       <section className="bg-navy py-16 text-center">
         <div className="max-w-2xl mx-auto px-6">
           <h2 className="text-2xl lg:text-3xl font-outfit text-white mb-4">Ready to Find Out?</h2>
-          <p className="text-gray-400 mb-8">$69. No appointments. No strangers. Just answers.</p>
+          <p className="text-gray-400 mb-8">From $99. No appointments. No strangers. Just answers.</p>
           <a href="https://testyourworld.myshopify.com" target="_blank" rel="noopener noreferrer" className="inline-block bg-cyan text-navy px-10 py-4 rounded-lg font-outfit font-bold text-lg hover:bg-cyan-dim transition-all">
             Get Your Kit
           </a>

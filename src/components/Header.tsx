@@ -7,8 +7,7 @@ import { useState } from "react";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "https://testyourworld.myshopify.com", label: "Shop", external: true },
-  { href: "/test-your-air", label: "Test Your Air" },
-  { href: "/airpatch", label: "AirPatch" },
+  { href: "/whole-filter-testing", label: "Whole Filter Testing" },
   { href: "/swab-testing", label: "Swab Testing" },
   { href: "/professionals", label: "For Professionals" },
   { href: "/cost-calculator", label: "Cost Calculator" },
