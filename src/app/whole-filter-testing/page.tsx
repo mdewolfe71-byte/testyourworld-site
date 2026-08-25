@@ -8,12 +8,13 @@ export const metadata: Metadata = {
     "Send us your used HVAC filter. We analyze the whole thing — 182+ organisms, mold, allergens and particulates. Basic $99, Advanced $149. Results in 48 hours.",
 };
 
-// NOTE: the Advanced tier does not yet exist as a separate Shopify product.
-// Point ADVANCED_URL at its product page once it's created; until then it
-// sends the customer to the shop.
+// Handles are counter-intuitive and easy to swap by mistake: "filter-pad-test"
+// is Whole Filter Basic ($99) and "direct-filter-test-no-kit-needed-20-off" is
+// Pro Mode Advanced ($149). Verify against Shopify before changing either.
 const BASIC_URL =
+  "https://testyourworld.myshopify.com/products/filter-pad-test";
+const ADVANCED_URL =
   "https://testyourworld.myshopify.com/products/direct-filter-test-no-kit-needed-20-off";
-const ADVANCED_URL = "https://testyourworld.myshopify.com";
 
 const steps = [
   {

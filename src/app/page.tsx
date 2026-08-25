@@ -18,7 +18,7 @@ const tests = [
     quote: '"Just tell me if my air is okay."',
     image: "/images/types of filters.jpeg",
     price: "$99",
-    shopUrl: "https://testyourworld.myshopify.com/products/direct-filter-test-no-kit-needed-20-off",
+    shopUrl: "https://testyourworld.myshopify.com/products/filter-pad-test",
     linkHref: "/whole-filter-testing",
     features: [
       "Send us your used HVAC filter — 30+ days old",
@@ -37,7 +37,7 @@ const tests = [
     quote: '"I want to know everything."',
     image: "/images/Wolehome.png.webp",
     price: "$149",
-    shopUrl: "https://testyourworld.myshopify.com",
+    shopUrl: "https://testyourworld.myshopify.com/products/direct-filter-test-no-kit-needed-20-off",
     linkHref: "/whole-filter-testing",
     features: [
       "Same filter, same lab — full forensic depth",
