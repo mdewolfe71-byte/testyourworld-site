@@ -51,7 +51,7 @@ export default function ContactPage() {
             <div className="mb-8">
               <h3 className="font-outfit font-bold text-lg mb-3">🇨🇦 Canada Lab</h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                4510 Rhodes Drive #700<br />
+                4510 Rhodes Drive Unit 505<br />
                 Windsor, ON N8W 5K5, Canada
               </p>
             </div>
