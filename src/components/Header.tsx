@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "https://testyourworld.myshopify.com", label: "Shop", external: true },
+  { href: "/order", label: "Shop" },
   { href: "/whole-filter-testing", label: "Whole Filter Testing" },
   { href: "/swab-testing", label: "Swab Testing" },
   { href: "/professionals", label: "For Professionals" },
@@ -60,14 +60,12 @@ export function Header() {
               </Link>
             )
           )}
-          <a
-            href="https://testyourworld.myshopify.com"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/order"
             className="ml-3 bg-cyan text-navy px-5 py-2 rounded-lg text-sm font-outfit font-semibold hover:bg-cyan-dim transition-all hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(0,229,255,0.3)]"
           >
             Get Your Kit
-          </a>
+          </Link>
         </nav>
 
         {/* Mobile toggle */}
@@ -112,14 +110,12 @@ export function Header() {
               </Link>
             )
           )}
-          <a
-            href="https://testyourworld.myshopify.com"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/order"
             className="block mt-3 bg-cyan text-navy px-5 py-3 rounded-lg text-center font-outfit font-semibold"
           >
             Get Your Kit
-          </a>
+          </Link>
         </div>
       )}
     </header>

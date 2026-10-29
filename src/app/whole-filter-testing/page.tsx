@@ -8,13 +8,12 @@ export const metadata: Metadata = {
     "Send us your used HVAC filter. We analyze the whole thing — 182+ organisms, mold, allergens and particulates. Basic $99, Advanced $149. Results in 48 hours.",
 };
 
-// Handles are counter-intuitive and easy to swap by mistake: "filter-pad-test"
-// is Whole Filter Basic ($99) and "direct-filter-test-no-kit-needed-20-off" is
-// Pro Mode Advanced ($149). Verify against Shopify before changing either.
+// Product keys match the backend catalog (testyourworld backend,
+// services/checkout/catalog.js), which holds the real prices.
 const BASIC_URL =
-  "https://testyourworld.myshopify.com/products/filter-pad-test";
+  "/order?product=whole-filter-basic";
 const ADVANCED_URL =
-  "https://testyourworld.myshopify.com/products/direct-filter-test-no-kit-needed-20-off";
+  "/order?product=whole-filter-advanced";
 
 const steps = [
   {
@@ -98,14 +97,12 @@ export default function WholeFilterTestingPage() {
               caught.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a
+              <Link
                 href={BASIC_URL}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="bg-cyan text-navy px-8 py-4 rounded-xl font-outfit font-bold text-lg hover:bg-cyan-dim transition-all hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(0,229,255,0.3)] text-center"
               >
                 Get Started — $99
-              </a>
+              </Link>
               <Link
                 href="/sample-report"
                 className="border-2 border-white/30 text-white px-8 py-4 rounded-xl font-outfit font-bold text-lg hover:bg-white hover:text-navy transition-all hover:-translate-y-1 text-center"
@@ -213,14 +210,12 @@ export default function WholeFilterTestingPage() {
                   </li>
                 ))}
               </ul>
-              <a
+              <Link
                 href={BASIC_URL}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="block bg-navy text-white text-center py-3.5 rounded-lg font-outfit font-bold hover:bg-navy-light transition-all"
               >
                 Get Basic — $99
-              </a>
+              </Link>
             </div>
 
             {/* ADVANCED */}
@@ -272,14 +267,12 @@ export default function WholeFilterTestingPage() {
                   </li>
                 ))}
               </ul>
-              <a
+              <Link
                 href={ADVANCED_URL}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="block bg-cyan text-navy text-center py-3.5 rounded-lg font-outfit font-bold hover:bg-cyan-dim transition-all"
               >
                 Get Advanced — $149
-              </a>
+              </Link>
             </div>
           </div>
           <p className="text-center text-gray-500 text-sm mt-6">
@@ -366,22 +359,18 @@ export default function WholeFilterTestingPage() {
             of what your home has been circulating. Results in 48 hours.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+            <Link
               href={BASIC_URL}
-              target="_blank"
-              rel="noopener noreferrer"
               className="bg-cyan text-navy px-8 py-4 rounded-xl font-outfit font-bold text-lg hover:bg-cyan-dim transition-all hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(0,229,255,0.3)]"
             >
               Get Basic — $99
-            </a>
-            <a
+            </Link>
+            <Link
               href={ADVANCED_URL}
-              target="_blank"
-              rel="noopener noreferrer"
               className="border-2 border-navy text-navy px-8 py-4 rounded-xl font-outfit font-bold text-lg hover:bg-navy hover:text-white transition-all hover:-translate-y-1 text-center"
             >
               Get Advanced — $149
-            </a>
+            </Link>
           </div>
         </div>
       </section>

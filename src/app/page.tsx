@@ -18,7 +18,7 @@ const tests = [
     quote: '"Just tell me if my air is okay."',
     image: "/images/types of filters.jpeg",
     price: "$99",
-    shopUrl: "https://testyourworld.myshopify.com/products/filter-pad-test",
+    shopUrl: "/order?product=whole-filter-basic",
     linkHref: "/whole-filter-testing",
     features: [
       "Send us your used HVAC filter — 30+ days old",
@@ -37,7 +37,7 @@ const tests = [
     quote: '"I want to know everything."',
     image: "/images/Wolehome.png.webp",
     price: "$149",
-    shopUrl: "https://testyourworld.myshopify.com/products/direct-filter-test-no-kit-needed-20-off",
+    shopUrl: "/order?product=whole-filter-advanced",
     linkHref: "/whole-filter-testing",
     features: [
       "Same filter, same lab — full forensic depth",
@@ -56,7 +56,7 @@ const tests = [
     quote: '"Is that mold or a committed dust bunny?"',
     image: "/images/rs=h_175,m (1).webp",
     price: "$49",
-    shopUrl: "https://testyourworld.myshopify.com/products/surface-swab-mold-test-report",
+    shopUrl: "/order?product=surface-swab",
     linkHref: "/swab-testing",
     features: [
       "Swab any suspicious surface",
@@ -142,14 +142,12 @@ export default function HomePage() {
               Serious science. Delivered without the serious attitude.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up delay-3">
-              <a
-                href="https://testyourworld.myshopify.com"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/order"
                 className="bg-cyan text-navy px-8 py-4 rounded-lg font-outfit font-bold text-lg hover:bg-cyan-dim transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,229,255,0.3)]"
               >
                 Get Your Kit — $99
-              </a>
+              </Link>
               <Link
                 href="/sample-report"
                 className="border border-white/20 text-white px-8 py-4 rounded-lg font-outfit font-semibold text-lg hover:border-cyan hover:text-cyan transition-all text-center"
@@ -254,14 +252,12 @@ export default function HomePage() {
                       ))}
                     </ul>
                     {test.shopUrl ? (
-                      <a
+                      <Link
                         href={test.shopUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
                         className="block bg-cyan text-navy text-center py-3 rounded-lg font-outfit font-bold hover:bg-cyan-dim transition-all hover:-translate-y-0.5 hover:shadow-[0_4px_15px_rgba(0,229,255,0.3)]"
                       >
                         Get {test.name} — {test.price}
-                      </a>
+                      </Link>
                     ) : (
                       <Link
                         href={test.linkHref!}
@@ -430,14 +426,12 @@ export default function HomePage() {
             <Link href="/cost-calculator" className="bg-coral text-white px-8 py-4 rounded-lg font-outfit font-bold text-lg hover:bg-coral/90 transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(255,107,107,0.3)]">
               Calculate My Hidden Costs
             </Link>
-            <a
-              href="https://testyourworld.myshopify.com"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/order"
               className="border border-white/20 text-white px-8 py-4 rounded-lg font-outfit font-semibold text-lg hover:border-cyan hover:text-cyan transition-all text-center"
             >
               Skip to Kit — $99
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -452,14 +446,12 @@ export default function HomePage() {
           <p className="text-gray-400 mb-10 text-lg">
             Your air. Your answers. Your call. (But seriously, find out what you&apos;re breathing.)
           </p>
-          <a
-            href="https://testyourworld.myshopify.com"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/order"
             className="inline-block bg-cyan text-navy px-10 py-4 rounded-lg font-outfit font-bold text-lg hover:bg-cyan-dim transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,229,255,0.3)]"
           >
             Shop Now — $99
-          </a>
+          </Link>
         </div>
       </section>
 

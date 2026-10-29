@@ -419,14 +419,12 @@ export default function WhatWeTestForPage() {
             From $99. No appointments. No strangers in your home. Results in 48 hours.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="https://testyourworld.myshopify.com"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/order"
               className="bg-cyan text-navy px-8 py-4 rounded-xl font-outfit font-bold text-lg hover:bg-cyan-dim transition-all hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(0,229,255,0.3)]"
             >
               Get Your Test Kit — $99
-            </a>
+            </Link>
             <Link
               href="/sample-report"
               className="border-2 border-white/20 text-white px-8 py-4 rounded-xl font-outfit font-bold text-lg hover:border-cyan hover:text-cyan transition-all"
