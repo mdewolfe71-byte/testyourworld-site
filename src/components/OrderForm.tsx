@@ -9,7 +9,8 @@ export default function OrderForm() {
   const fromUrl = params.get("product");
   const [productKey, setProductKey] = useState<ProductKey>(isProductKey(fromUrl) ? fromUrl : "whole-filter-basic");
   const [currency, setCurrency] = useState<Currency>("usd");
-  const [email, setEmail] = useState("");
+  // Arriving from the customer portal's "Order Another Test" button pre-fills the email.
+  const [email, setEmail] = useState(params.get("email") ?? "");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const cancelled = params.get("cancelled") === "1";
