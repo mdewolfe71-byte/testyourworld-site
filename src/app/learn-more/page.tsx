@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
@@ -151,9 +152,9 @@ export default function LearnMorePage() {
         <div className="max-w-2xl mx-auto px-6">
           <h2 className="text-2xl lg:text-3xl font-outfit text-white mb-4">Ready to Find Out?</h2>
           <p className="text-gray-400 mb-8">From $99. No appointments. No strangers. Just answers.</p>
-          <a href="https://testyourworld.myshopify.com" target="_blank" rel="noopener noreferrer" className="inline-block bg-cyan text-navy px-10 py-4 rounded-lg font-outfit font-bold text-lg hover:bg-cyan-dim transition-all">
+          <Link href="/order" className="inline-block bg-cyan text-navy px-10 py-4 rounded-lg font-outfit font-bold text-lg hover:bg-cyan-dim transition-all">
             Get Your Kit
-          </a>
+          </Link>
         </div>
       </section>
     </>

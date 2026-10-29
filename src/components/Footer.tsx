@@ -51,7 +51,7 @@ export function Footer() {
               <li><Link href="/swab-testing" className="hover:text-cyan transition-colors">Swab Testing</Link></li>
               <li><Link href="/sample-report" className="hover:text-cyan transition-colors">Sample Report</Link></li>
               <li><Link href="/cost-calculator" className="hover:text-cyan transition-colors">Cost Calculator</Link></li>
-              <li><a href="https://testyourworld.myshopify.com" target="_blank" rel="noopener noreferrer" className="hover:text-cyan transition-colors">Shop</a></li>
+              <li><Link href="/order" className="hover:text-cyan transition-colors">Shop</Link></li>
             </ul>
           </div>
 

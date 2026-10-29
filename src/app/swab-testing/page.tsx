@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
@@ -76,9 +77,9 @@ export default function SwabTestingPage() {
                   </li>
                 ))}
               </ul>
-              <a href="https://testyourworld.myshopify.com" target="_blank" rel="noopener noreferrer" className="block bg-cyan text-navy text-center py-3.5 rounded-lg font-outfit font-bold text-lg hover:bg-cyan-dim transition-all">
+              <Link href="/order?product=surface-swab" className="block bg-cyan text-navy text-center py-3.5 rounded-lg font-outfit font-bold text-lg hover:bg-cyan-dim transition-all">
                 Get Swab Kit — $49
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -150,9 +151,9 @@ export default function SwabTestingPage() {
             Stop Guessing. <span className="text-cyan">Start Knowing.</span>
           </h2>
           <p className="text-gray-400 mb-8">Real lab. Real scientists. Real answers. For that one spot that&apos;s been bugging you.</p>
-          <a href="https://testyourworld.myshopify.com" target="_blank" rel="noopener noreferrer" className="inline-block bg-cyan text-navy px-10 py-4 rounded-lg font-outfit font-bold text-lg hover:bg-cyan-dim transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,229,255,0.3)]">
+          <Link href="/order?product=surface-swab" className="inline-block bg-cyan text-navy px-10 py-4 rounded-lg font-outfit font-bold text-lg hover:bg-cyan-dim transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,229,255,0.3)]">
             Get Your Swab Kit — $49
-          </a>
+          </Link>
         </div>
       </section>
     </>

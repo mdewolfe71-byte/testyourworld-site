@@ -22,7 +22,7 @@ export default function TermsPage() {
           <h2 className="text-xl font-outfit font-bold mt-8 mb-3">Nature of Service</h2>
           <p className="text-gray-600 leading-relaxed">Test Your World is a consumer screening service, not a medical or diagnostic product. Results are provided for informational purposes only and are not intended to diagnose, treat, cure, or prevent any disease. Results should not replace professional medical or environmental advice.</p>
           <h2 className="text-xl font-outfit font-bold mt-8 mb-3">Orders and Payment</h2>
-          <p className="text-gray-600 leading-relaxed">All orders are processed through our Shopify storefront. Prices are listed in USD and CAD. Payment is collected at the time of purchase. We reserve the right to modify pricing at any time.</p>
+          <p className="text-gray-600 leading-relaxed">Orders are placed on this website and paid securely through Stripe; we do not see or store your card number. Prices are listed in USD and CAD. Payment is collected at the time of purchase. We reserve the right to modify pricing at any time.</p>
           <h2 className="text-xl font-outfit font-bold mt-8 mb-3">Sample Handling</h2>
           <p className="text-gray-600 leading-relaxed">Samples are analyzed at our accredited laboratories in Canton, Michigan (USA) and Windsor, Ontario (Canada). We follow strict chain-of-custody protocols. Samples are retained for 30 days after report delivery and then disposed of properly.</p>
           <h2 className="text-xl font-outfit font-bold mt-8 mb-3">Limitation of Liability</h2>

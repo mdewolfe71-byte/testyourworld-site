@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Cost Calculator — What's Bad Air Really Costing You?",
@@ -70,14 +71,12 @@ export default function CostCalculatorPage() {
               </div>
             ))}
           </div>
-          <a
-            href="https://testyourworld.myshopify.com"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/order"
             className="inline-block bg-cyan text-navy px-8 py-4 rounded-lg font-outfit font-bold text-lg hover:bg-cyan-dim transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,229,255,0.3)]"
           >
             Get Your Kit — $99
-          </a>
+          </Link>
         </div>
       </div>
     </section>
