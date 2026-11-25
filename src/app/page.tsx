@@ -121,6 +121,31 @@ const faqs = [
 export default function HomePage() {
   return (
     <>
+      {/* ───── 0. BLACK FRIDAY HERO ───── */}
+      <section className="relative bg-black pt-28 pb-16 lg:pt-36 lg:pb-20 overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-amber-400 rounded-full opacity-[0.07] blur-[140px]" />
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          <span className="inline-block mb-6 px-4 py-1.5 rounded-full bg-amber-400 text-black text-sm font-outfit font-bold tracking-widest uppercase">
+            Black Friday Only
+          </span>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-outfit font-extrabold text-white mb-6 leading-tight">
+            Is It <span className="text-amber-400">Gross?</span>
+          </h1>
+          <p className="text-lg sm:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+            The <span className="text-amber-400 font-bold">$19.99</span> test that settles it. No kit. No pants. No excuse not to find out.
+          </p>
+          <Link
+            href="/order?product=just-for-fun-swab"
+            className="inline-block bg-amber-400 text-black px-10 py-4 rounded-lg font-outfit font-bold text-lg hover:bg-amber-300 transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(251,191,36,0.4)]"
+          >
+            Get the Just For Fun Test — $19.99
+          </Link>
+          <p className="text-gray-500 text-xs mt-5">
+            Launch price for the first 1,000 orders. You supply the swab and postage — a real lab result in 48 hours. Self-collected screening, not a certified inspection.
+          </p>
+        </div>
+      </section>
+
       {/* ───── 1. HERO ───── */}
       <section className="relative bg-navy pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
