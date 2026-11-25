@@ -1,8 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { PRODUCTS, isProductKey, startCheckout, type Currency, type ProductKey } from "@/lib/checkout";
+import { PRODUCTS, isProductKey, startCheckout, fetchCatalogPrices, formatPrice, type CatalogPrices, type Currency, type ProductKey } from "@/lib/checkout";
+
+// The customer supplies their own swab and postage for this one — no kit, no
+// prepaid label. That is the whole reason it's cheaper, so the form says so.
+const SELF_COLLECTED: ReadonlySet<ProductKey> = new Set<ProductKey>(["just-for-fun-swab"]);
 
 export default function OrderForm() {
   const params = useSearchParams();
@@ -15,7 +19,18 @@ export default function OrderForm() {
   const [error, setError] = useState<string | null>(null);
   const cancelled = params.get("cancelled") === "1";
 
-  const product = PRODUCTS.find((p) => p.key === productKey)!;
+  // Live prices from the backend catalog (the Just For Fun launch price can change),
+  // so what's shown always matches what Stripe charges. Falls back to PRODUCTS.
+  const [catalog, setCatalog] = useState<CatalogPrices>({});
+  useEffect(() => {
+    let active = true;
+    fetchCatalogPrices().then((c) => { if (active) setCatalog(c); });
+    return () => { active = false; };
+  }, []);
+
+  const priceFor = (key: ProductKey, cur: Currency) => catalog[key]?.[cur] ?? PRODUCTS.find((p) => p.key === key)!.price;
+  const selectedPrice = priceFor(productKey, currency);
+  const selfCollected = SELF_COLLECTED.has(productKey);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -50,7 +65,7 @@ export default function OrderForm() {
               <span className="flex-1">
                 <span className="flex justify-between gap-4 font-outfit font-semibold">
                   <span>{p.name}</span>
-                  <span>${p.price}</span>
+                  <span>{formatPrice(priceFor(p.key, currency))}</span>
                 </span>
                 <span className="block text-sm text-gray-600">{p.blurb}</span>
               </span>
@@ -75,7 +90,12 @@ export default function OrderForm() {
             </button>
           ))}
         </div>
-        <p className="text-sm text-gray-500 mt-2">${product.price} is ${product.price} in either currency. Prepaid return shipping is included.</p>
+        <p className="text-sm text-gray-500 mt-2">
+          {formatPrice(selectedPrice)} is {formatPrice(selectedPrice)} in either currency.{" "}
+          {selfCollected
+            ? "You supply your own cotton swab and your own postage — no kit ships, and that's the discount."
+            : "Prepaid return shipping is included."}
+        </p>
       </fieldset>
 
       <div>
@@ -100,7 +120,7 @@ export default function OrderForm() {
         disabled={busy}
         className="w-full bg-cyan text-navy py-4 rounded-lg font-outfit font-bold text-lg hover:bg-cyan-dim transition-all disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        {busy ? "Taking you to secure payment…" : `Continue to secure payment — $${product.price} ${currency.toUpperCase()}`}
+        {busy ? "Taking you to secure payment…" : `Continue to secure payment — ${formatPrice(selectedPrice)} ${currency.toUpperCase()}`}
       </button>
       <p className="text-xs text-gray-500 text-center">
         Payment is handled by Stripe. We never see or store your card number. You&apos;ll enter your shipping address on the next page.
