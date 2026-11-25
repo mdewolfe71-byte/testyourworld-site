@@ -130,7 +130,7 @@ export default function SwabTestingPage() {
 
             {/* Fine print — renders on the site itself */}
             <p className="text-gray-500 text-xs leading-relaxed mt-8 pt-6 border-t border-white/10">
-              Fine print, said out loud: the Just For Fun Test is a separate, lower-cost product from our Surface Swab Mold Test — you supply your own swab and your own postage, we don&apos;t mail you anything, and that&apos;s the whole discount. It&apos;s a self-collected screening sample, not a certified inspection. We test for mold and other fungi/bacteria — not viruses, germs, or cooties. Please label your sample with your order number; unlabeled samples are matched using the return address on the envelope where possible. A sample we can&apos;t match to an order will be held, not guessed. Launch price $19.99 for the first 1,000 orders placed 11/27–11/30; after that (or after 11/30) the price is $29, same test, no further discount.
+              Fine print, said out loud: the Just For Fun Test is a separate, lower-cost product from our Surface Swab Mold Test — you supply your own swab and your own postage, we don&apos;t mail you anything, and that&apos;s the whole discount. It&apos;s a self-collected screening sample, not a certified inspection. We test for mold and other fungi/bacteria — not viruses, germs, or cooties. Please label your sample with your order number; unlabeled samples are matched using the return address on the envelope where possible. A sample we can&apos;t match to an order will be held, not guessed. Launch price $19.99 for the first 1,000 orders (through 11/30); after the first 1,000 orders (or after 11/30) the price is $29, same test, no further discount.
             </p>
           </div>
         </div>
