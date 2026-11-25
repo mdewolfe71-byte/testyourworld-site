@@ -4,7 +4,7 @@ import OrderForm from "@/components/OrderForm";
 
 export const metadata: Metadata = {
   title: "Order a Test",
-  description: "Order your Test Your World mold test. Whole Filter Basic $99, Advanced $149, Surface Swab $49 — USD or CAD. Secure checkout by Stripe.",
+  description: "Order your Test Your World mold test. Whole Filter Basic $99, Advanced $149, Surface Swab $49, or the self-collected Just For Fun Test from $19.99 — USD or CAD. Secure checkout by Stripe.",
 };
 
 export default function OrderPage() {
