@@ -85,54 +85,17 @@ export default function SwabTestingPage() {
         </div>
       </section>
 
-      {/* JUST FOR FUN TEST — a different, separate, lower-cost product */}
-      <section className="py-20 bg-navy border-t border-white/10">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="text-center mb-8">
-            <span className="inline-block bg-amber-400 text-navy text-xs font-bold px-3 py-1 rounded-full font-outfit tracking-wide mb-4">A DIFFERENT, SEPARATE TEST</span>
-            <h2 className="text-3xl lg:text-4xl font-outfit font-extrabold text-white mb-3">The Just For Fun Test 🤔</h2>
-            <p className="text-amber-300 font-semibold">Is it gross? Let&apos;s find out. (Non-certified, extremely real science.)</p>
-          </div>
-
-          <div className="bg-navy-light border-2 border-amber-400/40 rounded-2xl p-8 text-gray-300">
-            <p className="leading-relaxed mb-4">
-              You know the spot. Shower corner. Under the sink. That patch in the basement you&apos;ve been side-eyeing since spring.
-            </p>
-            <p className="leading-relaxed mb-6">
-              We&apos;ll tell you what&apos;s actually growing there for <strong className="text-white">$19.99</strong> — here&apos;s the trick: you supply the swab, we skip the shipping, and we pass the savings straight to you. Sorry, FedEx.
-            </p>
-
-            <h3 className="text-white font-outfit font-semibold mb-3">Here&apos;s the whole process:</h3>
-            <ol className="space-y-3 mb-6 list-decimal pl-5">
-              <li>Grab a cotton swab — yes, from your own bathroom drawer</li>
-              <li>Rub it on the mystery spot</li>
-              <li>Bag it, write your order number on it. If you forget, don&apos;t panic — we&apos;ll look at the return address on the envelope, or just become detectives. (A private-eye fee may be recommended. Not really.)</li>
-              <li>Mail it yourself (a regular stamp works fine) to our actual real lab</li>
-            </ol>
-
-            <p className="leading-relaxed mb-6">
-              <strong className="text-white">48 hours later:</strong> real lab results on what it actually is.
-            </p>
-
-            <div className="bg-amber-400/10 border border-amber-400/30 rounded-xl p-5 mb-6">
-              <p className="text-amber-200 text-sm leading-relaxed">
-                Launch price <strong>$19.99</strong> through 11/30 or the first 1,000 orders, whichever comes first — then it settles in at its regular price, <strong>$29</strong>. No code needed, nothing to enter, the price is just the price.
-              </p>
-            </div>
-
-            <Link href="/order?product=just-for-fun-swab" className="block bg-amber-400 text-navy text-center py-3.5 rounded-lg font-outfit font-bold text-lg hover:bg-amber-300 transition-all">
-              Start the Just For Fun Test — $19.99
-            </Link>
-
-            <p className="text-gray-400 text-sm leading-relaxed mt-6">
-              Want something official — chain of custody, the full professional workup? That&apos;s our <Link href="/order?product=surface-swab" className="text-cyan hover:underline">Surface Swab Mold Test</Link>, $49, kit and prepaid return label included.
-            </p>
-
-            {/* Fine print — renders on the site itself */}
-            <p className="text-gray-500 text-xs leading-relaxed mt-8 pt-6 border-t border-white/10">
-              Fine print, said out loud: the Just For Fun Test is a separate, lower-cost product from our Surface Swab Mold Test — you supply your own swab and your own postage, we don&apos;t mail you anything, and that&apos;s the whole discount. It&apos;s a self-collected screening sample, not a certified inspection. We test for mold and other fungi/bacteria — not viruses, germs, or cooties. Please label your sample with your order number; unlabeled samples are matched using the return address on the envelope where possible. A sample we can&apos;t match to an order will be held, not guessed. Launch price $19.99 for the first 1,000 orders (through 11/30); after the first 1,000 orders (or after 11/30) the price is $29, same test, no further discount.
-            </p>
-          </div>
+      {/* JUST FOR FUN TEST — short cross-sell to its own dedicated page */}
+      <section className="py-16 bg-navy border-t border-white/10">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <span className="inline-block bg-amber-400 text-navy text-xs font-bold px-3 py-1 rounded-full font-outfit tracking-wide mb-4">A DIFFERENT, SEPARATE TEST</span>
+          <h2 className="text-3xl lg:text-4xl font-outfit font-extrabold text-white mb-3">The Just For Fun Test 🤔</h2>
+          <p className="text-gray-400 max-w-xl mx-auto mb-7">
+            Just curious about one gross spot? Our self-collected Just For Fun Test skips the kit — you supply your own swab and a stamp, we run it in the same real lab, from <strong className="text-amber-300">$19.99</strong>. It&apos;s a fun screening look, not a certified inspection.
+          </p>
+          <Link href="/just-for-fun" className="inline-block bg-amber-400 text-navy px-8 py-3.5 rounded-lg font-outfit font-bold hover:bg-amber-300 transition-all">
+            Start the Just For Fun Test
+          </Link>
         </div>
       </section>
 

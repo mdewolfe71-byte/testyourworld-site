@@ -67,6 +67,26 @@ const tests = [
     ],
   },
   {
+    badge: "JUST FOR FUN",
+    badgeColor: "bg-amber-500",
+    name: "Just For Fun Test",
+    tagline: "Is it gross? Let's find out.",
+    quote: '"You supply the swab, we skip the shipping."',
+    // Placeholder image — reusing an existing swab asset. A dedicated Just For Fun
+    // graphic should replace this later.
+    image: "/images/swab_on_floor.jpeg",
+    price: "$19.99",
+    shopUrl: "/just-for-fun",
+    linkHref: "/just-for-fun",
+    features: [
+      "Self-collected — you supply the swab and postage",
+      "Launch price for the first 1,000 orders, then $29",
+      "Identifies exact mold species",
+      "Results in 48 hours",
+      "Not a certified inspection — just for fun",
+    ],
+  },
+  {
     badge: "FOR INSPECTORS",
     badgeColor: "bg-emerald-600",
     name: "Home Inspector",
@@ -131,11 +151,19 @@ export default function HomePage() {
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-outfit font-extrabold text-white mb-6 leading-tight">
             Is It <span className="text-amber-400">Gross?</span>
           </h1>
-          <p className="text-lg sm:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
             The <span className="text-amber-400 font-bold">$19.99</span> test that settles it. No kit. No pants. No excuse not to find out.
           </p>
+          {/* How the self-collect mechanic actually works, right in the banner */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-2 mb-10 text-sm font-outfit font-semibold">
+            <span className="px-4 py-2 rounded-full bg-white/5 border border-amber-400/20 text-white">Swab it</span>
+            <span className="text-amber-400" aria-hidden="true">→</span>
+            <span className="px-4 py-2 rounded-full bg-white/5 border border-amber-400/20 text-white">Mail it (your stamp, your envelope)</span>
+            <span className="text-amber-400" aria-hidden="true">→</span>
+            <span className="px-4 py-2 rounded-full bg-white/5 border border-amber-400/20 text-white">Results in 48 hours</span>
+          </div>
           <Link
-            href="/order?product=just-for-fun-swab"
+            href="/just-for-fun"
             className="inline-block bg-amber-400 text-black px-10 py-4 rounded-lg font-outfit font-bold text-lg hover:bg-amber-300 transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(251,191,36,0.4)]"
           >
             Get the Just For Fun Test — $19.99
